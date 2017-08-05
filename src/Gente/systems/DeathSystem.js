@@ -87,11 +87,13 @@ DeathSystem.prototype.rollForFreakAccident = function(world) {
 	return d100Precise() <= accidentRate;
 }
 
-DeathSystem.prototype.killPerson = function(currentYear, person, cause) {
+export function killPerson(currentYear, person, cause) {
 	window.logger.add(`${person.components.Name.getFirstName()} has died of ${cause} at the age of ${person.components.Age.getAgeInYears()}`, person);
 	person.components.Health.setIsAlive(false);
 	person.components.Age.setDateOfDeath(currentYear);
 }
+
+DeathSystem.prototype.killPerson = killPerson;
 
 DeathSystem.prototype.hasComponent = function(person) {
 	if (!person.hasComponent('Health')) {
