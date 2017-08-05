@@ -10,12 +10,12 @@ import HealthGenerator from './HealthGenerator';
 import MarriageGenerator from './MarriageGenerator';
 import EyeColorGenerator from './EyeColorGenerator';
 
-export default function PersonGenerator(defaults = {}) {
+export default function PersonGenerator(defaults = {}, world) {
 
 	let template = {};
 
 	template = Object.assign({}, personDefault, new SexGenerator(template), defaults);
-	template = Object.assign({}, new AgeGenerator(template), defaults);
+	template = Object.assign({}, new AgeGenerator(template, world), defaults);
 	template = Object.assign({}, new NameGenerator(template), defaults);
 	template = Object.assign({}, new HealthGenerator(template), defaults);
 	template = Object.assign({}, new MarriageGenerator(template), defaults);
