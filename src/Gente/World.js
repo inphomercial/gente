@@ -14,6 +14,7 @@ export default class World {
 
 		this.population = 0;
 		this.dead = 0;
+		this.averageLifeSpan = 0;
 
 		this.settings = settings;
 
@@ -31,9 +32,6 @@ export default class World {
 				continue;
 			}
 
-			// Check for deaths
-			new DeathSystem(this, person);
-
 			// Run Systems
 			new AgingSystem(this, person);
 
@@ -42,6 +40,9 @@ export default class World {
 
 			// Birth Events
 			new BirthSystem(this, person);
+
+			// Check for deaths, always has to be last
+			new DeathSystem(this, person);
 		}
 
 		this.analyzeYear();
@@ -50,6 +51,7 @@ export default class World {
 	analyzeYear() {
 		this.population = this.countPopulation();
 		this.dead = this.countDead();
+		this.averageLifeSpan = this.getAverageLifespan();
 	}
 
 	incrementYear() {
@@ -80,6 +82,20 @@ export default class World {
 			}
 			return dead;
 		}, 0);
+	}
+
+	getAverageLifespan() {
+		if (this.dead <= 0) {
+			return 0;
+		}
+		const totalAge = this.populace.reduce((age, person) => {
+			if (!person.components.Health.getIsAlive()) {
+				return age+=person.components.Age.getAgeInYears();
+			}
+			return age;
+		}, 0);
+
+		return totalAge / this.dead;
 	}
 
 	addPerson(person) {

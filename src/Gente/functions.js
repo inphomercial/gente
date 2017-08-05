@@ -5,7 +5,11 @@ export function setDefaults(options, defaults) {
 }
 
 export function d100() {
-	return Math.floor(Math.random() * 100) + 1;
+	return Math.floor(Math.random() * 100);
+}
+
+export function d100Precise() {
+	return Math.random() * 100;
 }
 
 export function dRoll(start, sides) {

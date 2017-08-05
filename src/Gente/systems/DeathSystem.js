@@ -1,4 +1,4 @@
-import {d100} from '../functions';
+import {d100Precise} from '../functions';
 
 export default function DeathSystem(world, person) {
 	// Ensure person has proper component	
@@ -38,7 +38,7 @@ export default function DeathSystem(world, person) {
 DeathSystem.prototype.rollForSids = function(world, person) {
 	if (person.components.Age.getAgeInYears() <= 3) {
 		let sidsRate = world.settings.infantMortalityRate;
-		return d100() < sidsRate;
+		return d100Precise() <= sidsRate;
 	}
 
 	return false;
@@ -46,31 +46,28 @@ DeathSystem.prototype.rollForSids = function(world, person) {
 
 DeathSystem.prototype.rollForHeartDisease = function(world) {
 	let rate = world.settings.heartDiseaseDeathRate;
-	return d100() < rate;
+	return d100Precise() <= rate;
 }
 
 DeathSystem.prototype.handleHeartDisease = function(world, person) {
-	let name = person.components.Name.getFirstName();
 	this.killPerson(world.currentYears, person, 'heart disease');
 }
 
 DeathSystem.prototype.rollForLiverCancer = function(world) {
 	let rate = world.settings.liverCancerDeathRate;
-	return d100() < rate;
+	return d100Precise() <= rate;
 }
 
 DeathSystem.prototype.handleLiverCancer = function(world, person) {
-	let name = person.components.Name.getFirstName();
 	this.killPerson(world.currentYears, person, 'liver cancer');
 }
 
 DeathSystem.prototype.rollForLungCancer = function(world) {
 	let rate = world.settings.lungCancerDeathRate;
-	return d100() < rate;
+	return d100Precise() <= rate;
 }
 
 DeathSystem.prototype.handleLungCancer = function(world, person) {
-	let name = person.components.Name.getFirstName();
 	this.killPerson(world.currentYears, person, 'lung cancer');
 }
 
@@ -87,7 +84,7 @@ DeathSystem.prototype.handleFreakAccident = function(world, person) {
 DeathSystem.prototype.rollForFreakAccident = function(world) {
 	let accidentRate = world.settings.freakAccidentDeathRate;
 
-	return d100() <= accidentRate;
+	return d100Precise() <= accidentRate;
 }
 
 DeathSystem.prototype.killPerson = function(currentYear, person, cause) {
