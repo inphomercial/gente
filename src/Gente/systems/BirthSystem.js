@@ -5,7 +5,7 @@ import {d100Precise} from '../functions';
 
 export default function BirthSystem(world, person) {
 
-	if (!this.isAbleToGetPregnant(person)) {
+	if (!this.isAbleToGetPregnant(world, person)) {
 		return;
 	}
 		
@@ -71,9 +71,12 @@ BirthSystem.prototype.doesMotherDieDuringBirth = function(world) {
 	return d100Precise() <= world.settings.birthParentMortalityRate;
 }
 
-BirthSystem.prototype.isAbleToGetPregnant = function(person) {
+BirthSystem.prototype.isAbleToGetPregnant = function(world, person) {
+	let minAge = world.settings.minPregnantAge;
+
 	return person.components.Health.getIsAlive() && 
 	person.components.Marriage.getIsMarried() &&
-	person.components.Sex.isFemale();
+	person.components.Sex.isFemale() &&
+	person.components.Age.getAgeInYears() >= minAge;
 }
 
