@@ -8,8 +8,8 @@ export function d100() {
 	return Math.floor(Math.random() * 100) + 1;
 }
 
-export function dRoll(sides) {
-	return Math.floor(Math.random() * sides) + 1;
+export function dRoll(start, sides) {
+  return Math.floor(Math.random() * (sides - start + start)) + start;
 }
 
 // 0 = zero chance

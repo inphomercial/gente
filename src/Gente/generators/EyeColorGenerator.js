@@ -17,7 +17,7 @@ export default function EyeColorGenerator(personTemplate) {
 }
 
 EyeColorGenerator.prototype.generateEyeColor = function() {
-    let num = dRoll(COLORS.length);
+    let num = dRoll(0, COLORS.length);
 
 	return COLORS[num];
 }

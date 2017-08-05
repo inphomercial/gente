@@ -10,7 +10,7 @@ export default function BirthSystem(world, person) {
 		return;
 	}
 		
-	let momName = person.components.Name.getFirstName();
+	const momName = person.components.Name.getFirstName().toString();
 
 	// Check if already pregnant but not full term
 	// checkIfPregnantButNotFullTerm
@@ -23,7 +23,8 @@ export default function BirthSystem(world, person) {
 	// Check if already pregnant and fullterm
 	// alreadyPregnantAndFullTerm
 	if (person.components.Health.getIsPregnant() && person.components.Health.getIsFullTerm()) {
-		window.logger.add(`${momName} is giving birth.`, person);
+		// TODO: WHY THE FUCK CAN'T WE USE momName HERE??!
+		window.logger.add(`${person.components.Name.getFirstName()} is giving birth.`, person);
 
 		// Attempt to have baby
 		if (this.doesMotherDieDuringBirth(world)) {

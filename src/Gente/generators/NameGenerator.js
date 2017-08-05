@@ -18,19 +18,19 @@ export default function NameGenerator(personTemplate) {
 }
 
 NameGenerator.prototype.firstNameMaleGenerator = function() {
-	let num = dRoll(FIRST_NAME_MALE.length);
+	let num = dRoll(0, FIRST_NAME_MALE.length);
 
 	return FIRST_NAME_MALE[num];
 }
 
 NameGenerator.prototype.firstNameFemaleGenerator = function() {
-	let num = dRoll(FIRST_NAME_FEMALE.length);
+	let num = dRoll(0, FIRST_NAME_FEMALE.length);
 
 	return FIRST_NAME_FEMALE[num];
 }
 
 NameGenerator.prototype.lastNameGenerator = function() {
-	let num = dRoll(LAST_NAME.length);
+	let num = dRoll(0, LAST_NAME.length);
 
 	return LAST_NAME[num];
 }

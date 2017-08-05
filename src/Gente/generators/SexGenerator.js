@@ -14,7 +14,7 @@ SexGenerator.prototype.generateSex = function() {
 		'Female'
 	];
 
-	let num = dRoll(sexes.length) - 1;
+	let num = dRoll(0, sexes.length);
 
 	return sexes[num];
 }
