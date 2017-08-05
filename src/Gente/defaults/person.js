@@ -1,6 +1,6 @@
 
 export const personDefault = {
-	age: 0,
+	age: null,
 	sex: null,
 	dateOfBirth: null,
 	dateOfDeath: null,

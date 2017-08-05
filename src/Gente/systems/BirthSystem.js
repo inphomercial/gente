@@ -41,7 +41,7 @@ export default function BirthSystem(world, person) {
 			lastName 
 		}
 	
-		let baby = new PersonGenerator(babyTemplate); 
+		let baby = new PersonGenerator(babyTemplate, world);
 	
 		person.components.Children.addChild(baby.id);
 		husband.components.Children.addChild(baby.id);

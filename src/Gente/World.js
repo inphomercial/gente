@@ -48,7 +48,7 @@ export default class World {
 
 	generateInitialPopulation() {
 		for (var i = 0; i < this.settings.initialPopulationCount; i++) {
-			let person = new PersonGenerator();
+			let person = new PersonGenerator({}, this);
 
 			this.addPerson(person);
 		}
