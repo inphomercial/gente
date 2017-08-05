@@ -11,28 +11,28 @@ import Entity from './Entity';
 
 export class Person extends Entity {
 
-    constructor(options) {
-        super();
+	constructor(options) {
+		super();
 
-        // Build and add components
-        this.addComponent(new Age(options));
-        this.addComponent(new Sex(options));
-        this.addComponent(new Name(options));
+		// Build and add components
+		this.addComponent(new Age(options));
+		this.addComponent(new Sex(options));
+		this.addComponent(new Name(options));
 
-        this.addComponent(new Health(options));
-        this.addComponent(new Marriage(options));
-        
+		this.addComponent(new Health(options));
+		this.addComponent(new Marriage(options));
+		
 		this.addComponent(new Eye(options));
 
-        // Possible die roll for each person based on a range (ex: d4, d6, d20 -- combined fertility rates need to exceed global setting?)
-        this.fertility = options.fertility;
+		// Possible die roll for each person based on a range (ex: d4, d6, d20 -- combined fertility rates need to exceed global setting?)
+		this.fertility = options.fertility;
 
-        // Parents
-        this.parents = {}; 
+		// Parents
+		this.parents = {}; 
 
-        // Children
+		// Children
 		this.addComponent(new ChildrenComponent(options));
 
 		this.log = {};
-    }
+	}
 }

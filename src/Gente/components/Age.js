@@ -8,15 +8,15 @@ export default function Age(options) {
 Age.prototype.name = 'Age';
 
 Age.prototype.getAgeInYears = function() {
-    return this._age;
+	return this._age;
 }
 
 Age.prototype.getAgeInDays = function() {
-    return this._age * 365;
+	return this._age * 365;
 }
 
 Age.prototype.getDateOfBirth = function() {
-    return this._dateOfBirth;
+	return this._dateOfBirth;
 }
 
 Age.prototype.setDateOfDeath = function(year) {

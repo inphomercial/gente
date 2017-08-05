@@ -23,7 +23,7 @@ export default class World {
 		for (var i = 0; i < this.populace.length; i++) {
 
 			let person = this.populace[i];
-			
+
 			if (!person.components.Health.getIsAlive()) {
 				return;
 			}
@@ -33,7 +33,7 @@ export default class World {
 
 			// Run Systems
 			new AgingSystem(this, person);
-		
+
 			// Marriage Events
 			new MarriageSystem(this, person);
 
@@ -48,7 +48,7 @@ export default class World {
 
 	generateInitialPopulation() {
 		for (var i = 0; i < this.settings.initialPopulationCount; i++) {
-			let person = new PersonGenerator(); 
+			let person = new PersonGenerator();
 
 			this.addPerson(person);
 		}

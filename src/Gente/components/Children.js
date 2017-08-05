@@ -1,6 +1,5 @@
 export default function ChildrenComponent(options) {
 	this._children = [];
-	// this._children = options.children;
 }
 ChildrenComponent.prototype.name = "Children";
 

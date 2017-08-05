@@ -1,8 +1,8 @@
 
 export default function Health(options) {
 
-    this._isAlive = options.isAlive;
-    this._isSick = options.isSick;
+	this._isAlive = options.isAlive;
+	this._isSick = options.isSick;
 	this._isPregnant = options.isPregnant;
 	this._isFullTerm = options.isFullTerm;
 }
@@ -39,8 +39,3 @@ Health.prototype.getIsFullTerm = function() {
 Health.prototype.setIsFullTerm = function(isFullTerm) {
 	this._isFullTerm = isFullTerm;
 }
-
-
-// Health.prototype.didDie = function() {
-//     return Boolean(Math.floor(Math.random() * 100) < 5);
-// }

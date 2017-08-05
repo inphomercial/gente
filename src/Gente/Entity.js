@@ -1,15 +1,15 @@
 
 export default function Entity() {
 
-    this.id = this.idGenerator();
+	this.id = this.idGenerator();
 
-    this.components = {};
+	this.components = {};
 
-    return this;
+	return this;
 }
 
 Entity.prototype.idGenerator = function() {
-    return Math.floor(Math.random() * 100000000);
+	return Math.floor(Math.random() * 100000000);
 }
 
 Entity.prototype.hasComponent = function(name) {
@@ -17,23 +17,23 @@ Entity.prototype.hasComponent = function(name) {
 }
 
 Entity.prototype.addComponent = function addComponent(component) {
-    // Add component data to the entity
-    this.components[component.name] = component;
-    return this;
+	// Add component data to the entity
+	this.components[component.name] = component;
+	return this;
 };
 
 Entity.prototype.removeComponent = function removeComponent(componentName) {
-    // Remove component data by removing the reference to it.
-    // Allows either a component function or a string of a component name to be
-    // passed in
-    var name = componentName; // assume a string was passed in
+	// Remove component data by removing the reference to it.
+	// Allows either a component function or a string of a component name to be
+	// passed in
+	var name = componentName; // assume a string was passed in
 
-    if (typeof componentName === 'function') { 
-        // get the name from the prototype of the passed component function
-        name = componentName.prototype.name;
-    }
+	if (typeof componentName === 'function') { 
+		// get the name from the prototype of the passed component function
+		name = componentName.prototype.name;
+	}
 
-    delete this.components[name];
-    return this;
+	delete this.components[name];
+	return this;
 };
 

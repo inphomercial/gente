@@ -1,7 +1,7 @@
 import _ from 'lodash';
 
 export function setDefaults(options, defaults) {
-    return _.defaults({}, _.clone(options), defaults);
+	return _.defaults({}, _.clone(options), defaults);
 }
 
 export function d100() {
