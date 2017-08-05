@@ -50,7 +50,7 @@ DeathSystem.prototype.rollForHeartDisease = function(world) {
 }
 
 DeathSystem.prototype.handleHeartDisease = function(world, person) {
-	this.killPerson(world.currentYears, person, 'heart disease');
+	this.killPerson(world.currentYear, person, 'heart disease');
 }
 
 DeathSystem.prototype.rollForLiverCancer = function(world) {
@@ -59,7 +59,7 @@ DeathSystem.prototype.rollForLiverCancer = function(world) {
 }
 
 DeathSystem.prototype.handleLiverCancer = function(world, person) {
-	this.killPerson(world.currentYears, person, 'liver cancer');
+	this.killPerson(world.currentYear, person, 'liver cancer');
 }
 
 DeathSystem.prototype.rollForLungCancer = function(world) {
@@ -68,17 +68,15 @@ DeathSystem.prototype.rollForLungCancer = function(world) {
 }
 
 DeathSystem.prototype.handleLungCancer = function(world, person) {
-	this.killPerson(world.currentYears, person, 'lung cancer');
+	this.killPerson(world.currentYear, person, 'lung cancer');
 }
 
 DeathSystem.prototype.handleSids = function(world, person) {
-	this.killPerson(world.currentYears, person, 'SIDS');
+	this.killPerson(world.currentYear, person, 'SIDS');
 }
 
 DeathSystem.prototype.handleFreakAccident = function(world, person) {
-	let currentYear = world.currentYear;
-
-	this.killPerson(currentYear, person, 'a freak accident');
+	this.killPerson(world.currentYear, person, 'a freak accident');
 }
 
 DeathSystem.prototype.rollForFreakAccident = function(world) {
