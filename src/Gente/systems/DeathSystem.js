@@ -10,6 +10,24 @@ export default function DeathSystem(world, person) {
 		return;
 	}
 
+	// Check for lung cancer
+	if (this.rollForLungCancer(world)) {
+		this.handleLungCancer(world, person);
+		return;
+	}
+	
+	// Check for liver cancer
+	if (this.rollForLiverCancer(world)) {
+		this.handleLiverCancer(world, person);
+		return;
+	}
+	
+	// Check for heart disease 
+	if (this.rollForHeartDisease(world)) {
+		this.handleHeartDisease(world, person);
+		return;
+	}
+
 	// Check if a baby has SIDS
 	if (this.rollForSids(world, person)) {
 		this.handleSids(world, person);
@@ -24,6 +42,36 @@ DeathSystem.prototype.rollForSids = function(world, person) {
 	}
 
 	return false;
+}
+
+DeathSystem.prototype.rollForHeartDisease = function(world) {
+	let rate = world.settings.heartDiseaseDeathRate;
+	return d100() < rate;
+}
+
+DeathSystem.prototype.handleHeartDisease = function(world, person) {
+	let name = person.components.Name.getFirstName();
+	this.killPerson(world.currentYears, person, 'heart disease');
+}
+
+DeathSystem.prototype.rollForLiverCancer = function(world) {
+	let rate = world.settings.liverCancerDeathRate;
+	return d100() < rate;
+}
+
+DeathSystem.prototype.handleLiverCancer = function(world, person) {
+	let name = person.components.Name.getFirstName();
+	this.killPerson(world.currentYears, person, 'liver cancer');
+}
+
+DeathSystem.prototype.rollForLungCancer = function(world) {
+	let rate = world.settings.lungCancerDeathRate;
+	return d100() < rate;
+}
+
+DeathSystem.prototype.handleLungCancer = function(world, person) {
+	let name = person.components.Name.getFirstName();
+	this.killPerson(world.currentYears, person, 'lung cancer');
 }
 
 DeathSystem.prototype.handleSids = function(world, person) {
