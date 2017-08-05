@@ -5,11 +5,23 @@ export function setDefaults(options, defaults) {
 }
 
 export function d100() {
-	return Math.floor(Math.random() * 100) + 1;
+	return Math.floor(Math.random() * 100);
+}
+
+export function d100Precise() {
+	return Math.random() * 100;
 }
 
 export function dRoll(start, sides) {
 	return Math.floor(Math.random() * (sides - start + start)) + start;
+}
+
+export function weightedRandom(max, bellFactor) {
+	var num = 0;
+	for (var i = 0; i < bellFactor; i++) {
+		num += Math.random() * (max/bellFactor);
+	}
+	return num;
 }
 
 // 0 = zero chance

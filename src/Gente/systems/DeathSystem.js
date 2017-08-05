@@ -1,4 +1,4 @@
-import {d100} from '../functions';
+import {d100Precise} from '../functions';
 
 export default function DeathSystem(world, person) {
 	// Ensure person has proper component	
@@ -28,8 +28,7 @@ export default function DeathSystem(world, person) {
 		return;
 	}
 
-
-	// Check if a baby for SIDAS
+	// Check if a baby has SIDS
 	if (this.rollForSids(world, person)) {
 		this.handleSids(world, person);
 		return;
@@ -39,7 +38,7 @@ export default function DeathSystem(world, person) {
 DeathSystem.prototype.rollForSids = function(world, person) {
 	if (person.components.Age.getAgeInYears() <= 3) {
 		let sidsRate = world.settings.infantMortalityRate;
-		return d100() < sidsRate;
+		return d100Precise() <= sidsRate;
 	}
 
 	return false;
@@ -47,60 +46,49 @@ DeathSystem.prototype.rollForSids = function(world, person) {
 
 DeathSystem.prototype.rollForHeartDisease = function(world) {
 	let rate = world.settings.heartDiseaseDeathRate;
-	return d100() < rate;
+	return d100Precise() <= rate;
 }
 
 DeathSystem.prototype.handleHeartDisease = function(world, person) {
-	let name = person.components.Name.getFirstName();
-	window.logger.add(`${name} has died from heart disease`, person);
-	this.killPerson(world.currentYears, person);
+	this.killPerson(world.currentYears, person, 'heart disease');
 }
 
 DeathSystem.prototype.rollForLiverCancer = function(world) {
 	let rate = world.settings.liverCancerDeathRate;
-	return d100() < rate;
+	return d100Precise() <= rate;
 }
 
 DeathSystem.prototype.handleLiverCancer = function(world, person) {
-	let name = person.components.Name.getFirstName();
-	window.logger.add(`${name} has died from liver cancer`, person);
-	this.killPerson(world.currentYears, person);
+	this.killPerson(world.currentYears, person, 'liver cancer');
 }
 
 DeathSystem.prototype.rollForLungCancer = function(world) {
 	let rate = world.settings.lungCancerDeathRate;
-	return d100() < rate;
+	return d100Precise() <= rate;
 }
 
 DeathSystem.prototype.handleLungCancer = function(world, person) {
-	let name = person.components.Name.getFirstName();
-	window.logger.add(`${name} has died from lung cancer`, person);
-	this.killPerson(world.currentYears, person);
+	this.killPerson(world.currentYears, person, 'lung cancer');
 }
 
 DeathSystem.prototype.handleSids = function(world, person) {
-	window.logger.add("A baby has died from SIDS", person);
-	this.killPerson(world.currentYears, person);
+	this.killPerson(world.currentYears, person, 'SIDS');
 }
 
 DeathSystem.prototype.handleFreakAccident = function(world, person) {
 	let currentYear = world.currentYear;
 
-	window.logger.add("A person has died from a freak accident", person);
-	this.killPerson(currentYear, person);
+	this.killPerson(currentYear, person, 'a freak accident');
 }
 
 DeathSystem.prototype.rollForFreakAccident = function(world) {
 	let accidentRate = world.settings.freakAccidentDeathRate;
 
-	return d100() < accidentRate;
+	return d100Precise() <= accidentRate;
 }
 
-DeathSystem.prototype.checkForSids = function(sidsRate, person) {
-	return d100() < sidsRate;
-}
-
-DeathSystem.prototype.killPerson = function(currentYear, person) {
+DeathSystem.prototype.killPerson = function(currentYear, person, cause) {
+	window.logger.add(`${person.components.Name.getFirstName()} has died of ${cause} at the age of ${person.components.Age.getAgeInYears()}`, person);
 	person.components.Health.setIsAlive(false);
 	person.components.Age.setDateOfDeath(currentYear);
 }

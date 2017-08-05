@@ -1,8 +1,7 @@
 
 import PersonGenerator from '../generators/PersonGenerator';
-import {Person} from '../Person';
 
-import {d100} from '../functions';
+import {d100Precise} from '../functions';
 
 export default function BirthSystem(world, person) {
 
@@ -69,7 +68,7 @@ BirthSystem.prototype.isAlreadyPregnantAndFullTerm = function(person) {
 }
 
 BirthSystem.prototype.doesMotherDieDuringBirth = function(world) {
-	return d100() <= world.settings.birthParentMortalityRate;
+	return d100Precise() <= world.settings.birthParentMortalityRate;
 }
 
 BirthSystem.prototype.isAbleToGetPregnant = function(person) {
