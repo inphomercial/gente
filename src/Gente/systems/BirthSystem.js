@@ -6,23 +6,19 @@ import {d100} from '../functions';
 
 export default function BirthSystem(world, person) {
 
-	if (!this.isAbleToBirth(person)) {
+	if (!this.isAbleToGetPregnant(person)) {
 		return;
 	}
 		
 	const momName = person.components.Name.getFirstName().toString();
 
-	// Check if already pregnant but not full term
-	// checkIfPregnantButNotFullTerm
-	if (person.components.Health.getIsPregnant() && !person.components.Health.getIsFullTerm()) {
+	if (this.isPregnantButNotFullTerm(person)) {
 		person.components.Health.setIsFullTerm(true);
 		window.logger.add(`${momName} has become full term`, person);
 		return;
 	}
 
-	// Check if already pregnant and fullterm
-	// alreadyPregnantAndFullTerm
-	if (person.components.Health.getIsPregnant() && person.components.Health.getIsFullTerm()) {
+	if (this.isAlreadyPregnantAndFullTerm(person)) {
 		// TODO: WHY THE FUCK CAN'T WE USE momName HERE??!
 		window.logger.add(`${person.components.Name.getFirstName()} is giving birth.`, person);
 
@@ -66,11 +62,19 @@ export default function BirthSystem(world, person) {
 	}
 }
 
+BirthSystem.prototype.isPregnantButNotFullTerm = function(person) {
+	return person.components.Health.getIsPregnant() && !person.components.Health.getIsFullTerm();
+}
+
+BirthSystem.prototype.isAlreadyPregnantAndFullTerm = function(person) {
+	return person.components.Health.getIsPregnant() && person.components.Health.getIsFullTerm();
+}
+
 BirthSystem.prototype.doesMotherDieDuringBirth = function(world) {
 	return d100() <= world.settings.birthParentMortalityRate;
 }
 
-BirthSystem.prototype.isAbleToBirth = function(person) {
+BirthSystem.prototype.isAbleToGetPregnant = function(person) {
 	return person.components.Health.getIsAlive() && 
 	person.components.Marriage.getIsMarried() &&
 	person.components.Sex.isFemale();
