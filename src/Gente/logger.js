@@ -1,0 +1,30 @@
+
+export function Logger() {
+	this.log = {};
+}
+
+Logger.prototype.add = function(text, person) {
+	let year = window.world.currentYear;
+
+	if (typeof this.log[year] === 'undefined') {
+	// if (typeof this.log[year] !== 'object') {
+	// if (typeof this.log[year] !== Array) {
+		this.log[year] = [];
+	}
+
+	this.log[year].push(text);
+
+	if (person) {
+		let year = window.world.currentYear;
+		// if (typeof person.log[year] !== 'object') {
+		if (typeof person.log[year] !== Array) {
+			person.log[year] = [];
+		}
+
+		person.log[year].push(text);
+	}
+}
+
+Logger.prototype.getLog = function() {
+	return this.log;
+}
