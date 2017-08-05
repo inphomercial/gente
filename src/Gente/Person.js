@@ -29,15 +29,10 @@ export class Person extends Entity {
 
         // Parents
         this.parents = {}; 
-        // this.parents = options.parents;
 
         // Children
 		this.addComponent(new ChildrenComponent(options));
-        // this.children = options.children;
 
-		// log
 		this.log = {};
-
-        console.log("p", this);
     }
 }

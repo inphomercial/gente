@@ -3,12 +3,6 @@ import World from './Gente/World';
 import {worldTemplate} from './Gente/data/worldTemplate';
 import {Logger} from './Gente/logger';
 
-import moment from 'moment';
-
-import {d100} from './Gente/functions';
-window.d100 = d100;
-
-window.moment = moment;
 window.logger = new Logger();
 
 let world = new World(worldTemplate);
@@ -48,7 +42,3 @@ el10.addEventListener("click", function() {
     root.innerHTML = `<pre><code>${JSON.stringify(world, undefined, 4)}</code></pre>`;
 	log.innerHTML = `<pre>${JSON.stringify(window.logger.getLog(), undefined, 4)}</pre>`;
 });
-
-// function buildDay(day) {
-// 	console.log("day", day);
-// }

@@ -15,12 +15,6 @@ export default class World {
 		this.settings = settings;
 
 		this.populace = [];
-		this.buildings = [];
-
-		// stuff
-		// relationships
-		// jobs
-
 	}
 
 	takeTurn() {
@@ -46,9 +40,6 @@ export default class World {
 			// Birth Events
 			new BirthSystem(this, person);
 		}
-
-		// Events
-			
 	}
 
 	incrementYear() {

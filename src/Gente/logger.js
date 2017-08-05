@@ -7,8 +7,6 @@ Logger.prototype.add = function(text, person) {
 	let year = window.world.currentYear;
 
 	if (typeof this.log[year] === 'undefined') {
-	// if (typeof this.log[year] !== 'object') {
-	// if (typeof this.log[year] !== Array) {
 		this.log[year] = [];
 	}
 
@@ -16,7 +14,6 @@ Logger.prototype.add = function(text, person) {
 
 	if (person) {
 		let year = window.world.currentYear;
-		// if (typeof person.log[year] !== 'object') {
 		if (typeof person.log[year] !== Array) {
 			person.log[year] = [];
 		}

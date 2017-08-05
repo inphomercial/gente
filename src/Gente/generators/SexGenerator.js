@@ -1,4 +1,6 @@
 
+import {dRoll} from '../functions';
+
 export default function SexGenerator(personTemplate) {
 
 	personTemplate.sex = this.generateSex();
@@ -12,7 +14,7 @@ SexGenerator.prototype.generateSex = function() {
 		'Female'
 	];
 
-	let num = Math.floor(Math.random() * sexes.length);
+	let num = dRoll(sexes.length);
 
 	return sexes[num];
 }
