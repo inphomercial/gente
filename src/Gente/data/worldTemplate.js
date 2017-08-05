@@ -1,7 +1,7 @@
 
 export const worldTemplate = {
 	startingYear: 1607,
-	initialPopulationCount: 10,
+	initialPopulationCount: 20,
 
 	minMarryAge: 9, // min marry age
 	averageMarryAge: 19, // average marry age

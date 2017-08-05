@@ -10,7 +10,7 @@ export default function DeathSystem(world, person) {
 		return;
 	}
 
-	// Check if a baby for SIDAS
+	// Check if a baby has SIDS
 	if (this.rollForSids(world, person)) {
 		this.handleSids(world, person);
 		return;
@@ -27,28 +27,23 @@ DeathSystem.prototype.rollForSids = function(world, person) {
 }
 
 DeathSystem.prototype.handleSids = function(world, person) {
-	window.logger.add("A baby has died from SIDS", person);
-	this.killPerson(world.currentYears, person);
+	this.killPerson(world.currentYears, person, 'SIDS');
 }
 
 DeathSystem.prototype.handleFreakAccident = function(world, person) {
 	let currentYear = world.currentYear;
 
-	window.logger.add("A person has died from a freak accident", person);
-	this.killPerson(currentYear, person);
+	this.killPerson(currentYear, person, 'a freak accident');
 }
 
 DeathSystem.prototype.rollForFreakAccident = function(world) {
 	let accidentRate = world.settings.freakAccidentDeathRate;
 
-	return d100() < accidentRate;
+	return d100() <= accidentRate;
 }
 
-DeathSystem.prototype.checkForSids = function(sidsRate, person) {
-	return d100() < sidsRate;
-}
-
-DeathSystem.prototype.killPerson = function(currentYear, person) {
+DeathSystem.prototype.killPerson = function(currentYear, person, cause) {
+	window.logger.add(`${person.components.Name.getFirstName()} has died of ${cause} at the age of ${person.components.Age.getAgeInYears()}`, person);
 	person.components.Health.setIsAlive(false);
 	person.components.Age.setDateOfDeath(currentYear);
 }
