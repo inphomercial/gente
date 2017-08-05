@@ -3,6 +3,8 @@ import PersonGenerator from '../generators/PersonGenerator';
 
 import {d100Precise} from '../functions';
 
+import {killPerson} from './DeathSystem';
+
 export default function BirthSystem(world, person) {
 
 	if (!this.isAbleToGetPregnant(world, person)) {
@@ -22,8 +24,7 @@ export default function BirthSystem(world, person) {
 
 		// Attempt to have baby
 		if (this.doesMotherDieDuringBirth(world)) {
-			window.logger.add(`${momName} has died during child birth`, person);
-			person.components.Health.setIsAlive(false);
+			killPerson(world.currentYear, person, 'complications in child birth');
 			return;
 		}
 
