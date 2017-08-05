@@ -6,6 +6,8 @@ export const worldTemplate = {
 	minMarryAge: 9, // min marry age
 	averageMarryAge: 19, // average marry age
 
+	minPregnantAge: 10,
+
 	averageLifeSpanMale: 70,
 	averageLifeSpanFemale: 80,
 
