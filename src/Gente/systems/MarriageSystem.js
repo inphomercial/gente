@@ -1,7 +1,8 @@
-
+import { sampleSize } from 'lodash'
 import {d100} from '../functions';
 
 export default function MarriageSystem(world, person) {
+  let { numPeopleMetPerTurn, minMinglingPercentage } = world.settings
 
 	if (!person.hasComponent('Marriage')) {
 		console.log("Person doesnt have Marriage component");
@@ -13,9 +14,16 @@ export default function MarriageSystem(world, person) {
 		return;
 	}
 
+  // randomly cannot meet potential spouses in this turn
+  if (d100() < minMinglingPercentage) {
+    return
+  }
+
+  let samples = sampleSize(world.populace, numPeopleMetPerTurn)
+
 	// Loop through and see if anyone marrys
-	for (var i = 0; i < world.populace.length; i++) {
-		let possibleSpouse = world.populace[i];
+	for (var i = 0; i < samples.length; i++) {
+		let possibleSpouse = samples[i];
 		let eligible = possibleSpouse.components.Age.getAgeInYears() > world.settings.minMarryAge &&
 			!possibleSpouse.components.Marriage.getIsMarried() &&
 			!person.id !== possibleSpouse.id &&

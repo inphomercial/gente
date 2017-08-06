@@ -1,3 +1,4 @@
+import { sampleSize } from 'lodash'
 
 import PersonGenerator from './generators/PersonGenerator';
 
@@ -25,9 +26,11 @@ export default class World {
 	takeTurn() {
 		this.incrementYear();
 
-		for (var i = 0; i < this.populace.length; i++) {
+    console.log('World population on this turn: %i', this.populace.length)
+    let sample = sampleSize(this.populace, this.settings.turnSampleSize)
+		for (var i = 0; i < sample.length; i++) {
 
-			let person = this.populace[i];
+			let person = sample[i];
 
 			// Run Systems
 			new AgingSystem(this, person);

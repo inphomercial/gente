@@ -19,5 +19,14 @@ export const worldTemplate = {
 	freakAccidentDeathRate: (57 / 100000) * 100, // 57 out of 100,000
 	lungCancerDeathRate: (20 / 100000) * 100, // 20 out of 100,000
 	liverCancerDeathRate: (1.08 / 100000) * 100, // 1.08 out of 100,000
-	heartDiseaseDeathRate: (268 / 100000) * 100 // 286 out of 100,000
+	heartDiseaseDeathRate: (268 / 100000) * 100, // 286 out of 100,000
+
+  // 0 - N, the larger this number, the more people they "sample" per turn
+  numPeopleMetPerTurn: 10,
+
+  // 0 - 100, the smaller the number the more likely to find a mate
+  minMinglingPercentage: 70,
+
+  // 0 - N, number of people that are evaluated per turn. the larger, the slower
+  turnSampleSize: 500
 }
