@@ -19,6 +19,7 @@ export default class World {
 		this.settings = settings;
 
 		this.populace = [];
+		this.deadPopulace = [];
 	}
 
 	takeTurn() {
@@ -27,10 +28,6 @@ export default class World {
 		for (var i = 0; i < this.populace.length; i++) {
 
 			let person = this.populace[i];
-
-			if (!person.components.Health.getIsAlive()) {
-				continue;
-			}
 
 			// Run Systems
 			new AgingSystem(this, person);
@@ -51,6 +48,7 @@ export default class World {
 	analyzeYear() {
 		this.population = this.countPopulation();
 		this.dead = this.countDead();
+		// TODO: find more performant way of doing this i.e. caching previous results and only adding newly dead
 		this.averageLifeSpan = this.getAverageLifespan();
 	}
 
@@ -67,32 +65,19 @@ export default class World {
 	}
 
 	countPopulation() {
-		return this.populace.reduce((population, person) => {
-			if (person.components.Health.getIsAlive()) {
-				return population+=1;
-			}
-			return population;
-		}, 0);
+		return this.populace.length;
 	}
 
 	countDead() {
-		return this.populace.reduce((dead, person) => {
-			if (!person.components.Health.getIsAlive()) {
-				return dead+=1;
-			}
-			return dead;
-		}, 0);
+		return this.deadPopulace.length;
 	}
 
 	getAverageLifespan() {
 		if (this.dead <= 0) {
 			return 0;
 		}
-		const totalAge = this.populace.reduce((age, person) => {
-			if (!person.components.Health.getIsAlive()) {
-				return age+=person.components.Age.getAgeInYears();
-			}
-			return age;
+		const totalAge = this.deadPopulace.reduce((age, person) => {
+			return age+=person.components.Age.getAgeInYears();
 		}, 0);
 
 		return totalAge / this.dead;
@@ -100,6 +85,14 @@ export default class World {
 
 	addPerson(person) {
 		this.populace.push(person);
+	}
+
+	removePerson(person) {
+		this.populace.splice(this.populace.indexOf(person), 1);
+	}
+
+	addDeadPerson(person) {
+		this.deadPopulace.push(person);
 	}
 
 	addBuilding(building) {
@@ -112,12 +105,15 @@ export default class World {
 				return this.populace[i];
 			}
 		}
+		for (var i = 0; i < this.deadPopulace.length; i++) {
+			if (personId === this.deadPopulace[i].id) {
+				return this.deadPopulace[i];
+			}
+		}
 	}
 
 	getAllAlive() {
-		return this.populace.filter(function(person) {
-			return person.components.Health.getIsAlive();
-		});
+		return this.populace;
 	}
 
 	getAllPregnant() {
@@ -133,9 +129,7 @@ export default class World {
 	}
 
 	getAllDead() {
-		return this.populace.filter(function(person) {
-			return !person.components.Health.getIsAlive();
-		})
+		return this.deadPopulace;
 	}
 
 }

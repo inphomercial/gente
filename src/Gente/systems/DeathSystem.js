@@ -50,7 +50,7 @@ DeathSystem.prototype.rollForHeartDisease = function(world) {
 }
 
 DeathSystem.prototype.handleHeartDisease = function(world, person) {
-	this.killPerson(world.currentYear, person, 'heart disease');
+	this.killPerson(world, person, 'heart disease');
 }
 
 DeathSystem.prototype.rollForLiverCancer = function(world) {
@@ -59,7 +59,7 @@ DeathSystem.prototype.rollForLiverCancer = function(world) {
 }
 
 DeathSystem.prototype.handleLiverCancer = function(world, person) {
-	this.killPerson(world.currentYear, person, 'liver cancer');
+	this.killPerson(world, person, 'liver cancer');
 }
 
 DeathSystem.prototype.rollForLungCancer = function(world) {
@@ -68,15 +68,15 @@ DeathSystem.prototype.rollForLungCancer = function(world) {
 }
 
 DeathSystem.prototype.handleLungCancer = function(world, person) {
-	this.killPerson(world.currentYear, person, 'lung cancer');
+	this.killPerson(world, person, 'lung cancer');
 }
 
 DeathSystem.prototype.handleSids = function(world, person) {
-	this.killPerson(world.currentYear, person, 'SIDS');
+	this.killPerson(world, person, 'SIDS');
 }
 
 DeathSystem.prototype.handleFreakAccident = function(world, person) {
-	this.killPerson(world.currentYear, person, 'a freak accident');
+	this.killPerson(world, person, 'a freak accident');
 }
 
 DeathSystem.prototype.rollForFreakAccident = function(world) {
@@ -85,10 +85,12 @@ DeathSystem.prototype.rollForFreakAccident = function(world) {
 	return d100Precise() <= accidentRate;
 }
 
-export function killPerson(currentYear, person, cause) {
+export function killPerson(world, person, cause) {
 	window.logger.add(`${person.components.Name.getFirstName()} has died of ${cause} at the age of ${person.components.Age.getAgeInYears()}`, person);
 	person.components.Health.setIsAlive(false);
-	person.components.Age.setDateOfDeath(currentYear);
+	person.components.Age.setDateOfDeath(world.currentYear);
+	world.addDeadPerson(person);
+	world.removePerson(person);
 }
 
 DeathSystem.prototype.killPerson = killPerson;
