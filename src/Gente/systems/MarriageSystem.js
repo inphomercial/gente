@@ -15,13 +15,16 @@ export default function MarriageSystem(world, person) {
 		return;
 	}
 
+	// Iterate on the populace starting at a random index
+	// no higher than the number of suitors less than the length
+	// and no lower than 0
 	let indexModifier = world.populace.length - suitors;
 	if (indexModifier < 0) {
 		indexModifier = 0;
 	}
 	let startingIndex = dRoll(0, indexModifier);
 
-	// Loop through and see if anyone marrys
+	// Loop through and see if anyone marrys, stop when reach the end of populace or number of suitors
 	for (var i = 0; i < world.populace.length && i <= suitors; i++) {
 		let possibleSpouse = world.populace[startingIndex + i];
 		if (!possibleSpouse) {
