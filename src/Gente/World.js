@@ -49,7 +49,7 @@ export default class World {
 		this.population = this.countPopulation();
 		this.dead = this.countDead();
 		// TODO: find more performant way of doing this i.e. caching previous results and only adding newly dead
-		// this.averageLifeSpan = this.getAverageLifespan();
+		this.averageLifeSpan = this.getAverageLifespan();
 	}
 
 	incrementYear() {
