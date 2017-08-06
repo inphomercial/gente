@@ -11,7 +11,8 @@ export default function BirthSystem(world, person) {
 		return;
 	}
 		
-	let momName = person.components.Name.getFirstName().toString();
+	const momName = person.components.Name.getFirstName().toString();
+	const husband = world.findPersonById(person.components.Marriage.getSpouseId());
 
 	if (this.isPregnantButNotFullTerm(person)) {
 		person.components.Health.setIsFullTerm(true);
@@ -24,17 +25,15 @@ export default function BirthSystem(world, person) {
 
 		// Attempt to have baby
 		if (this.doesMotherDieDuringBirth(world)) {
-			killPerson(world.currentYear, person, 'complications in child birth');
+			killPerson(world, person, 'complications in child birth');
 			return;
 		}
-
-		let husband = world.findPersonById(person.components.Marriage.getSpouseId());
 
 		let lastName = husband.components.Name.getLastName();
 		let babyTemplate = {
 			age: 0,
 			lastName 
-		}
+		};
 	
 		let baby = new PersonGenerator(babyTemplate, world);
 	
@@ -54,7 +53,7 @@ export default function BirthSystem(world, person) {
 	}
 	
 	// Check if can gets pregant
-	if (!person.components.Health.getIsPregnant()) {
+	if (!person.components.Health.getIsPregnant() && husband.components.Health.getIsAlive()) {
 		person.components.Health.setIsPregnant(true);
 		window.logger.add(`${momName} has become pregnant`, person);
 	}
@@ -62,22 +61,21 @@ export default function BirthSystem(world, person) {
 
 BirthSystem.prototype.isPregnantButNotFullTerm = function(person) {
 	return person.components.Health.getIsPregnant() && !person.components.Health.getIsFullTerm();
-}
+};
 
 BirthSystem.prototype.isAlreadyPregnantAndFullTerm = function(person) {
 	return person.components.Health.getIsPregnant() && person.components.Health.getIsFullTerm();
-}
+};
 
 BirthSystem.prototype.doesMotherDieDuringBirth = function(world) {
 	return d100Precise() <= world.settings.birthParentMortalityRate;
-}
+};
 
 BirthSystem.prototype.isAbleToGetPregnant = function(world, person) {
 	let minAge = world.settings.minPregnantAge;
 
-	return person.components.Health.getIsAlive() && 
-	person.components.Marriage.getIsMarried() &&
+	return person.components.Marriage.getIsMarried() &&
 	person.components.Sex.isFemale() &&
 	person.components.Age.getAgeInYears() >= minAge;
-}
+};
 
