@@ -1,7 +1,9 @@
 
-import {d100} from '../functions';
+import {d100, dRoll} from '../functions';
 
 export default function MarriageSystem(world, person) {
+
+	const suitors = 100;
 
 	if (!person.hasComponent('Marriage')) {
 		console.log("Person doesnt have Marriage component");
@@ -13,9 +15,18 @@ export default function MarriageSystem(world, person) {
 		return;
 	}
 
+	let indexModifier = world.populace.length - suitors;
+	if (indexModifier < 0) {
+		indexModifier = 0;
+	}
+	let startingIndex = dRoll(0, indexModifier);
+
 	// Loop through and see if anyone marrys
-	for (var i = 0; i < world.populace.length; i++) {
-		let possibleSpouse = world.populace[i];
+	for (var i = 0; i < world.populace.length && i <= suitors; i++) {
+		let possibleSpouse = world.populace[startingIndex + i];
+		if (!possibleSpouse) {
+			console.log(startingIndex + i);
+		}
 		let eligible = possibleSpouse.components.Age.getAgeInYears() > world.settings.minMarryAge &&
 			!possibleSpouse.components.Marriage.getIsMarried() &&
 			!person.id !== possibleSpouse.id &&
