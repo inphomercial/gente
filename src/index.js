@@ -39,6 +39,6 @@ el10.addEventListener("click", function() {
 	// 	console.log("logkey", log[key]);
 	// });
 
-    // root.innerHTML = `<pre><code>${JSON.stringify(world, undefined, 4)}</code></pre>`;
-	// log.innerHTML = `<pre>${JSON.stringify(window.logger.getLog(), undefined, 4)}</pre>`;
+    root.innerHTML = `<pre><code>${JSON.stringify(world, undefined, 4)}</code></pre>`;
+	log.innerHTML = `<pre>${JSON.stringify(window.logger.getLog(), undefined, 4)}</pre>`;
 });
