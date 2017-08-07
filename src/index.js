@@ -17,9 +17,9 @@ var root = document.getElementById("root");
 var log = document.getElementById("log");
 
 el.addEventListener("click", function() {
-    world.takeTurn();
+	world.takeTurn();
 
-    root.innerHTML = `<pre><code>${JSON.stringify(world, undefined, 4)}</code></pre>`;
+	root.innerHTML = `<pre><code>${JSON.stringify(world, undefined, 4)}</code></pre>`;
 	log.innerHTML = `<pre>${JSON.stringify(window.logger.getLog(), undefined, 4)}</pre>`;
 });
 
@@ -39,6 +39,6 @@ el10.addEventListener("click", function() {
 	// 	console.log("logkey", log[key]);
 	// });
 
-    root.innerHTML = `<pre><code>${JSON.stringify(world, undefined, 4)}</code></pre>`;
+	root.innerHTML = `<pre><code>${JSON.stringify(world, undefined, 4)}</code></pre>`;
 	log.innerHTML = `<pre>${JSON.stringify(window.logger.getLog(), undefined, 4)}</pre>`;
 });
