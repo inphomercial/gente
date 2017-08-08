@@ -21,8 +21,8 @@ export default class World {
 
 		this.settings = settings;
 
-		this.populace = [];
 		this.deadPopulace = [];
+		this.populace = [];
 	}
 
 	takeTurn() {
@@ -114,6 +114,33 @@ export default class World {
 				return this.deadPopulace[i];
 			}
 		}
+	}
+
+	findPersonAndImmediateFamily(personId) {
+		let family = {}
+		let person = null;
+		let spouse = null;
+		let children = [];
+
+		person = this.findPersonById(personId);
+
+		let spouseId = person.components.Marriage.getSpouseId();
+		if (spouseId) {
+			spouse = this.findPersonById(spouseId);
+		}
+
+		let kids = person.components.Children.getChildren();
+		if (kids.length) {
+			for (var i = 0, len = kids.length; i < len; i++) {
+				children.push(this.findPersonById(kids[i]));
+			}
+		}
+
+		family.person = person;
+		family.spouse = spouse;
+		family.children = children;
+
+		return family;
 	}
 
 	getAllAlive() {
