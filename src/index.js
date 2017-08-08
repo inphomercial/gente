@@ -13,8 +13,13 @@ window.world = world;
 
 var el = document.getElementById("incrementYear");
 var el10 = document.getElementById("incrementTenYears");
+var findPersonButton = document.getElementById("findPerson");
+
+var personIdInput = document.getElementById("personIdInput");
+
 var root = document.getElementById("root");
 var log = document.getElementById("log");
+var peopleList = document.getElementById("people-list");
 
 el.addEventListener("click", function() {
 	world.takeTurn();
@@ -28,16 +33,13 @@ el10.addEventListener("click", function() {
 		world.takeTurn();
 	}
 
-	// let log = window.logger.getLog();
-	// Object.keys(log).forEach(function(key) {
-
-	// 	console.log("key", key);
-	// 	log[key].forEach(function(eachLog) {
-	// 		console.log("each log", eachLog);
-	// 	});
-
-	// 	console.log("logkey", log[key]);
-	// });
     root.innerHTML = `<pre><code>${JSON.stringify(world.stats, undefined, 4)}</code></pre>`;
 	log.innerHTML = `<pre>${JSON.stringify(window.logger.getLog()[world.currentYear], undefined, 4)}</pre>`;
+});
+
+findPersonButton.addEventListener("click", function() {
+	let personId = parseInt(personIdInput.value);
+	let person = world.findPersonAndImmediateFamily(personId);
+
+	peopleList.innerHTML = `<pre>${JSON.stringify(person, undefined, 4)}</pre>`;
 });

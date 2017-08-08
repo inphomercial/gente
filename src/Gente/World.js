@@ -117,12 +117,11 @@ export default class World {
 	}
 
 	findPersonAndImmediateFamily(personId) {
-		let family = {}
-		let person = null;
+		let family = {};
 		let spouse = null;
 		let children = [];
 
-		person = this.findPersonById(personId);
+		let person = this.findPersonById(personId);
 
 		let spouseId = person.components.Marriage.getSpouseId();
 		if (spouseId) {

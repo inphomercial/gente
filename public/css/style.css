@@ -2,6 +2,17 @@
   height: auto;
 }
 
+#main-display {
+    float: left;
+    width: 60%;
+    display: inline-block;
+}
+
+#people-list {
+    display: inline-block;
+    float: left;
+}
+
 h2 {
   display: inline-block;
   font-size: 44px;
@@ -43,4 +54,10 @@ code {
 	background-color: #D7D0D0;
 	height: 400px;
 	overflow-y: scroll;
+}
+
+#people-list {
+    background-color: #D7D0D0;
+    height: auto;
+    overflow-y: scroll;
 }
