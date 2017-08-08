@@ -11,7 +11,7 @@ export default function BirthSystem(world, person) {
 		return;
 	}
 		
-	const momName = person.components.Name.getFirstName().toString();
+	const momName = person.components.Name.getFullName();
 	const husband = world.findPersonById(person.components.Marriage.getSpouseId());
 
 	if (this.isPregnantButNotFullTerm(person)) {

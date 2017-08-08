@@ -2,6 +2,17 @@
   height: auto;
 }
 
+#main-display {
+    float: left;
+    width: 50%;
+    display: inline-block;
+}
+
+#people-list {
+    display: inline-block;
+    float: left;
+}
+
 h2 {
   display: inline-block;
   font-size: 44px;

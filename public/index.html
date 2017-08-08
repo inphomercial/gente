@@ -10,7 +10,7 @@
   </head>
   <body>
 
-	<div className="App">
+	<div className="App" id="main-display">
 		<div className="App-header">
 			<h2>Gente</h2>
 
@@ -20,6 +20,14 @@
 
 		<div id="log"></div>
 		<div id="root"></div>
+	</div>
+	<div id="people-search">
+		<div className="App-header">
+			Person ID: <input id=personIdInput type="text" name="personId">
+			<button type="button" id="findPerson">Get Family Tree</button>
+		</div>
+
+		<div id="people-list"></div>
 	</div>
 
 	<script type="javascript" src="index.js"></script>

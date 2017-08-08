@@ -2,6 +2,8 @@
 import World from './Gente/World';
 import {worldTemplate} from './Gente/data/worldTemplate';
 import {Logger} from './Gente/logger';
+const renderjson = require('renderjson');
+renderjson.set_show_to_level(2);
 
 window.logger = new Logger();
 
@@ -13,14 +15,19 @@ window.world = world;
 
 var el = document.getElementById("incrementYear");
 var el10 = document.getElementById("incrementTenYears");
+var findPersonButton = document.getElementById("findPerson");
+
+var personIdInput = document.getElementById("personIdInput");
+
 var root = document.getElementById("root");
 var log = document.getElementById("log");
+var peopleList = document.getElementById("people-list");
 
 el.addEventListener("click", function() {
 	world.takeTurn();
 
-	root.innerHTML = `<pre><code>${JSON.stringify(world, undefined, 4)}</code></pre>`;
-	log.innerHTML = `<pre>${JSON.stringify(window.logger.getLog(), undefined, 4)}</pre>`;
+	root.innerHTML = `<pre><code>${JSON.stringify(world.stats, undefined, 4)}</code></pre>`;
+	log.innerHTML = `<pre>${JSON.stringify(window.logger.getLog()[world.currentYear], undefined, 4)}</pre>`;
 });
 
 el10.addEventListener("click", function() {
@@ -28,17 +35,17 @@ el10.addEventListener("click", function() {
 		world.takeTurn();
 	}
 
-	// let log = window.logger.getLog();
-	// Object.keys(log).forEach(function(key) {
+    root.innerHTML = `<pre><code>${JSON.stringify(world.stats, undefined, 4)}</code></pre>`;
+	log.innerHTML = `<pre>${JSON.stringify(window.logger.getLog()[world.currentYear], undefined, 4)}</pre>`;
+});
 
-	// 	console.log("key", key);
-	// 	log[key].forEach(function(eachLog) {
-	// 		console.log("each log", eachLog);
-	// 	});
+findPersonButton.addEventListener("click", function() {
+	let personId = parseInt(personIdInput.value);
+	let familyTree = world.findPersonAndImmediateFamily(personId);
 
-	// 	console.log("logkey", log[key]);
-	// });
-
-	root.innerHTML = `<pre><code>${JSON.stringify(world, undefined, 4)}</code></pre>`;
-	log.innerHTML = `<pre>${JSON.stringify(window.logger.getLog(), undefined, 4)}</pre>`;
+	if (peopleList.firstChild) {
+		peopleList.replaceChild(renderjson(familyTree), peopleList.firstChild);
+	} else {
+		peopleList.appendChild(renderjson(familyTree));
+	}
 });

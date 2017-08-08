@@ -23,3 +23,7 @@ NameComponent.prototype.getFirstName = function() {
 NameComponent.prototype.getLastName = function() {
 	return this._lastName;
 }
+
+NameComponent.prototype.getFullName = function () {
+	return `${this._firstName} ${this._lastName}`;
+}
