@@ -12,9 +12,12 @@ export default class World {
 		this.startingYear = settings.startingYear;
 		this.currentYear = settings.startingYear;
 
-		this.population = 0;
-		this.dead = 0;
-		this.averageLifeSpan = 0;
+		this.stats = {};
+		this.stats.startingYear = this.startingYear;
+		this.stats.currentYear = this.startingYear;
+		this.stats.population = 0;
+		this.stats.dead = 0;
+		this.stats.averageLifeSpan = 0;
 
 		this.settings = settings;
 
@@ -46,10 +49,11 @@ export default class World {
 	}
 
 	analyzeYear() {
-		this.population = this.countPopulation();
-		this.dead = this.countDead();
+		this.stats.currentYear = this.currentYear;
+		this.stats.population = this.countPopulation();
+		this.stats.dead = this.countDead();
 		// TODO: find more performant way of doing this i.e. caching previous results and only adding newly dead
-		this.averageLifeSpan = this.getAverageLifespan();
+		this.stats.averageLifeSpan = this.getAverageLifespan();
 	}
 
 	incrementYear() {
@@ -73,14 +77,14 @@ export default class World {
 	}
 
 	getAverageLifespan() {
-		if (this.dead <= 0) {
+		if (this.stats.dead <= 0) {
 			return 0;
 		}
 		const totalAge = this.deadPopulace.reduce((age, person) => {
 			return age+=person.components.Age.getAgeInYears();
 		}, 0);
 
-		return totalAge / this.dead;
+		return totalAge / this.stats.dead;
 	}
 
 	addPerson(person) {

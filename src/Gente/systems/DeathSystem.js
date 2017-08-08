@@ -86,7 +86,7 @@ DeathSystem.prototype.rollForFreakAccident = function(world) {
 }
 
 export function killPerson(world, person, cause) {
-	window.logger.add(`${person.components.Name.getFirstName()} has died of ${cause} at the age of ${person.components.Age.getAgeInYears()}`, person);
+	window.logger.add(`${person.components.Name.getFullName()} has died of ${cause} at the age of ${person.components.Age.getAgeInYears()}`, person);
 	person.components.Health.setIsAlive(false);
 	person.components.Age.setDateOfDeath(world.currentYear);
 	world.addDeadPerson(person);

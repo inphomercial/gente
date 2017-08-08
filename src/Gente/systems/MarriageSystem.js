@@ -37,8 +37,8 @@ export default function MarriageSystem(world, person) {
 
 		// TODO: Come up with a better means of telling if they marry
 		if (eligible && d100() > 95) {
-			let personName = person.components.Name.getFirstName();
-			let spouseName = possibleSpouse.components.Name.getFirstName();
+			let personName = person.components.Name.getFullName();
+			let spouseName = possibleSpouse.components.Name.getFullName();
 			window.logger.add(`${personName} has married ${spouseName}`, person);
 			window.logger.add(`${spouseName} has married ${personName}`, possibleSpouse);
 
