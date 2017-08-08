@@ -52,7 +52,7 @@ export default function BirthSystem(world, person) {
 		return;
 	}
 	
-	// Check if can gets pregant
+	// Check if can gets pregnant
 	if (!person.components.Health.getIsPregnant() && husband.components.Health.getIsAlive()) {
 		person.components.Health.setIsPregnant(true);
 		window.logger.add(`${momName} has become pregnant`, person);
