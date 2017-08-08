@@ -2,6 +2,8 @@
 import World from './Gente/World';
 import {worldTemplate} from './Gente/data/worldTemplate';
 import {Logger} from './Gente/logger';
+const renderjson = require('renderjson');
+renderjson.set_show_to_level(1);
 
 window.logger = new Logger();
 
@@ -39,7 +41,11 @@ el10.addEventListener("click", function() {
 
 findPersonButton.addEventListener("click", function() {
 	let personId = parseInt(personIdInput.value);
-	let person = world.findPersonAndImmediateFamily(personId);
+	let familyTree = world.findPersonAndImmediateFamily(personId);
 
-	peopleList.innerHTML = `<pre>${JSON.stringify(person, undefined, 4)}</pre>`;
+	if (peopleList.firstChild) {
+		peopleList.replaceChild(renderjson(familyTree), peopleList.firstChild);
+	} else {
+		peopleList.appendChild(renderjson(familyTree));
+	}
 });

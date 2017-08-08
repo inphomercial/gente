@@ -120,6 +120,7 @@ export default class World {
 		let family = {};
 		let spouse = null;
 		let children = [];
+		let parents = [];
 
 		let person = this.findPersonById(personId);
 
@@ -135,7 +136,15 @@ export default class World {
 			}
 		}
 
+		if (person.parents.motherId) {
+			parents.push(this.findPersonById(person.parents.motherId))
+		}
+		if (person.parents.fatherId) {
+			parents.push(this.findPersonById(person.parents.fatherId))
+		}
+
 		family.person = person;
+		family.parents = parents;
 		family.spouse = spouse;
 		family.children = children;
 

@@ -4,7 +4,7 @@
 
 #main-display {
     float: left;
-    width: 60%;
+    width: 50%;
     display: inline-block;
 }
 
@@ -54,10 +54,4 @@ code {
 	background-color: #D7D0D0;
 	height: 400px;
 	overflow-y: scroll;
-}
-
-#people-list {
-    background-color: #D7D0D0;
-    height: auto;
-    overflow-y: scroll;
 }
