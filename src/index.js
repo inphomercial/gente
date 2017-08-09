@@ -16,8 +16,10 @@ window.world = world;
 var el = document.getElementById("incrementYear");
 var el10 = document.getElementById("incrementTenYears");
 var findPersonButton = document.getElementById("findPerson");
+var getLogsButton = document.getElementById("getLogs");
 
 var personIdInput = document.getElementById("personIdInput");
+var logYearInput = document.getElementById("logYearInput");
 
 var root = document.getElementById("root");
 var log = document.getElementById("log");
@@ -48,4 +50,9 @@ findPersonButton.addEventListener("click", function() {
 	} else {
 		peopleList.appendChild(renderjson(familyTree));
 	}
+});
+
+getLogsButton.addEventListener("click", function() {
+	let logYear = parseInt(logYearInput.value);
+	log.innerHTML = `<pre>${JSON.stringify(window.logger.getLog()[logYear], undefined, 4)}</pre>`;
 });
