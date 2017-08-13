@@ -4,8 +4,10 @@ import React, { Component} from 'react';
 import World from '../../Gente/World';
 import {worldTemplate} from '../../Gente/data/worldTemplate';
 
-import LogsContainer from './LogsContainer';
+import Header from '../components/Header';
 import WorldStats from '../components/WorldStats';
+
+import LogsContainer from './LogsContainer';
 
 class App extends Component {
 	constructor(props) {
@@ -42,19 +44,7 @@ class App extends Component {
 
 		return (
 			<div>
-				<section className="section">
-					<div className="container">
-						<h1 className="title">
-							Gente	
-						</h1>
-						<p className="subtitle">
-							A thing about <strong>people</strong>
-						</p>
-
-						{/*<a className="button" onClick={() => this.incrementYear()}>1 Year</a>
-						<a className="button" onClick={() => this.increment10Years()}>10 Years</a>*/}
-					</div>
-				</section>
+				<Header />	
 				
 				<WorldStats world={this.state.world} />
 
