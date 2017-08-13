@@ -1,4 +1,8 @@
 
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './react/containers/App';
+
 import World from './Gente/World';
 import {worldTemplate} from './Gente/data/worldTemplate';
 import {Logger} from './Gente/logger';
@@ -7,52 +11,29 @@ renderjson.set_show_to_level(2);
 
 window.logger = new Logger();
 
-let world = new World(worldTemplate);
-world.generateInitialPopulation();
+ReactDOM.render(<App />, document.getElementById('root'));
 
-console.log("Initial World", world);
-window.world = world;
+// To do still
+// var findPersonButton = document.getElementById("findPerson");
+// var getLogsButton = document.getElementById("getLogs");
 
-var el = document.getElementById("incrementYear");
-var el10 = document.getElementById("incrementTenYears");
-var findPersonButton = document.getElementById("findPerson");
-var getLogsButton = document.getElementById("getLogs");
+// var personIdInput = document.getElementById("personIdInput");
+// var logYearInput = document.getElementById("logYearInput");
 
-var personIdInput = document.getElementById("personIdInput");
-var logYearInput = document.getElementById("logYearInput");
+// var peopleList = document.getElementById("people-list");
+// findPersonButton.addEventListener("click", function() {
 
-var root = document.getElementById("root");
-var log = document.getElementById("log");
-var peopleList = document.getElementById("people-list");
+// 	let personId = parseInt(personIdInput.value);
+// 	let familyTree = world.findPersonAndImmediateFamily(personId);
 
-el.addEventListener("click", function() {
-	world.takeTurn();
+// 	if (peopleList.firstChild) {
+// 		peopleList.replaceChild(renderjson(familyTree), peopleList.firstChild);
+// 	} else {
+// 		peopleList.appendChild(renderjson(familyTree));
+// 	}
+// });
 
-	root.innerHTML = `<pre><code>${JSON.stringify(world.stats, undefined, 4)}</code></pre>`;
-	log.innerHTML = `<pre>${JSON.stringify(window.logger.getLog()[world.currentYear], undefined, 4)}</pre>`;
-});
-
-el10.addEventListener("click", function() {
-	for (var i = 0; i < 10; i++) {
-		world.takeTurn();
-	}
-
-    root.innerHTML = `<pre><code>${JSON.stringify(world.stats, undefined, 4)}</code></pre>`;
-	log.innerHTML = `<pre>${JSON.stringify(window.logger.getLog()[world.currentYear], undefined, 4)}</pre>`;
-});
-
-findPersonButton.addEventListener("click", function() {
-	let personId = parseInt(personIdInput.value);
-	let familyTree = world.findPersonAndImmediateFamily(personId);
-
-	if (peopleList.firstChild) {
-		peopleList.replaceChild(renderjson(familyTree), peopleList.firstChild);
-	} else {
-		peopleList.appendChild(renderjson(familyTree));
-	}
-});
-
-getLogsButton.addEventListener("click", function() {
-	let logYear = parseInt(logYearInput.value);
-	log.innerHTML = `<pre>${JSON.stringify(window.logger.getLog()[logYear], undefined, 4)}</pre>`;
-});
+// getLogsButton.addEventListener("click", function() {
+// 	let logYear = parseInt(logYearInput.value);
+// 	log.innerHTML = `<pre>${JSON.stringify(window.logger.getLog()[logYear], undefined, 4)}</pre>`;
+// });

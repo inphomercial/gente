@@ -1,5 +1,6 @@
 
 export function Logger() {
+	// this.log = [];
 	this.log = {};
 }
 
