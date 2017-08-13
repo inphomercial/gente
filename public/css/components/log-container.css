@@ -1,17 +1,5 @@
 
-
-.LogsContainer ul {
-	list-style: none;
-}
-
-.LogsContainer li {
-	padding: 6px;
-	border-top: #dedede solid 1px;
-	font-weight: bold;
-	margin: 0;
-	color: #666; 
-}
-.LogsContainer li:hover {
-	color: #000;
-	background-color: #ddd; 
+ul.menu-list li:hover {
+	background-color: whitesmoke;
+    color: #363636;
 }

@@ -18,10 +18,14 @@ class LogsContainer extends Component {
 		let listItems = this.buildLog();
 
 		return (
-			<div className="LogsContainer">
-				<ul>
-					{ listItems }
-				</ul>
+			<div className="columns is-centered">
+				<div className="column is-narrow">
+					<aside className="menu">
+						<ul className="menu-list">
+							{ listItems }
+						</ul>
+					</aside>
+				</div>
 			</div>
 		)
 	}

@@ -42,16 +42,33 @@ class App extends Component {
 
 		return (
 			<div>
-				<div className="App-header">
-					<h2>Gente</h2>
+				<section className="section">
+					<div className="container">
+						<h1 className="title">
+							Gente	
+						</h1>
+						<p className="subtitle">
+							A thing about <strong>people</strong>
+						</p>
 
-					<button onClick={() => this.incrementYear()}>+1</button>
-					<button onClick={() => this.increment10Years()}>+10</button>
+						{/*<a className="button" onClick={() => this.incrementYear()}>1 Year</a>
+						<a className="button" onClick={() => this.increment10Years()}>10 Years</a>*/}
+					</div>
+				</section>
+				
+				<WorldStats world={this.state.world} />
+
+				<div className="columns">
+					<div className="column is-4"></div>
+					<div className="column is-2">
+						<a className="button" onClick={() => this.incrementYear()}>1 Year</a>
+					</div>
+					<div className="column">
+						<a className="button" onClick={() => this.increment10Years()}>10 Years</a>
+					</div>
 				</div>
 
 				{logs && <LogsContainer logs={logs} />}
-
-				<WorldStats world={this.state.world} />
 
 			</div>
 		)
