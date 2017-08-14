@@ -6,7 +6,6 @@ import {worldTemplate} from '../../Gente/data/worldTemplate';
 
 import Header from '../components/Header';
 import WorldStats from '../components/WorldStats';
-
 import LogsContainer from './LogsContainer';
 
 class App extends Component {

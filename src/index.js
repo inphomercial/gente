@@ -3,11 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './react/containers/App';
 
-import World from './Gente/World';
-import {worldTemplate} from './Gente/data/worldTemplate';
 import {Logger} from './Gente/logger';
-const renderjson = require('renderjson');
-renderjson.set_show_to_level(2);
 
 window.logger = new Logger();
 

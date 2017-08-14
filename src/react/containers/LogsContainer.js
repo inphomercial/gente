@@ -8,7 +8,7 @@ class LogsContainer extends Component {
 		const {logs} = this.props;
 
 		return logs.map(function(log, i) {
-			return <Log key={i} text={log} />;
+			return <Log key={i} id={log.id} text={log.text} />;
 		});
 	}
 
