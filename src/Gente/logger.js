@@ -10,7 +10,12 @@ Logger.prototype.add = function(text, person) {
 		this.log[year] = [];
 	}
 
-	this.log[year].push(`id: ${person.id}, ${text}`);
+	let logObject = {
+		id: person.id,
+		text: text
+	}
+
+	this.log[year].push(logObject);
 
 	if (person) {
 		let year = window.world.currentYear;
