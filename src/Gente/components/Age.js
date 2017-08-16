@@ -22,3 +22,7 @@ Age.prototype.getDateOfBirth = function() {
 Age.prototype.setDateOfDeath = function(year) {
 	this._dateOfDeath = year;
 }
+
+Age.prototype.getDateOfDeath = function() {
+	return this._dateOfDeath === null ? "" : this._dateOfDeath;
+}

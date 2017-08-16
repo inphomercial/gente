@@ -4,7 +4,7 @@ class Log extends Component {
 
 	render() {
 		return (
-			<li>{this.props.text}</li>
+			<li onClick={this.props.onSelectPerson}>{this.props.text}</li>
 		)
 	}
 }
