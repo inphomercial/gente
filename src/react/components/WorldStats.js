@@ -3,7 +3,7 @@ import React, { Component} from 'react';
 class WorldStats extends Component {
 
 	render() {
-		const {startingYear, currentYear, population, dead, averageLifeSpan} = this.props.world.stats;
+		const {startingYear, currentYear, populationCount, deadCount, averageLifeSpan} = this.props.world.stats;
 
 		return (
 			<nav className="level">
@@ -22,13 +22,13 @@ class WorldStats extends Component {
 				<div className="level-item has-text-centered">
 					<div>
 						<p className="heading">Population</p>
-						<p className="title">{population}</p>
+						<p className="title">{populationCount}</p>
 					</div>
 				</div>
 				<div className="level-item has-text-centered">
 					<div>
 						<p className="heading">Dead</p>
-						<p className="title">{dead}</p>
+						<p className="title">{deadCount}</p>
 					</div>
 				</div>
 				<div className="level-item has-text-centered">

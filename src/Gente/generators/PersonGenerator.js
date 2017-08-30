@@ -1,5 +1,5 @@
 
-import {personDefault} from '../defaults/person';
+import {personDefault} from '../data/person';
 
 import {Person} from '../Person';
 

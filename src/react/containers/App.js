@@ -57,7 +57,7 @@ class App extends Component {
 					</div>
 				</div>
 
-				{logs && <LogsContainer logs={logs} />}
+				{logs && <LogsContainer world={this.state.world} logs={logs} />}
 
 			</div>
 		)
