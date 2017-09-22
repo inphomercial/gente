@@ -1,6 +1,5 @@
 
 export default function MarriageComponent(options) {
-
 	this._isMarried = options.isMarried;
 	this._spouseId = options.spouseId;
 }

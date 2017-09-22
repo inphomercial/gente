@@ -1,6 +1,5 @@
 
 export default function Age(options) {
-
 	this._age = options.age;
 	this._dateOfBirth = options.dateOfBirth;
 	this._dateOfDeath = options.dateOfDeath;

@@ -2,7 +2,6 @@
 import {FIRST_NAME_MALE, FIRST_NAME_FEMALE, LAST_NAME} from '../data/names';
 
 export default function NameComponent(options) {
-
 	this._firstName = options.firstName;
 	this._lastName = options.lastName;
 }
