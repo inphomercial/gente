@@ -1,11 +1,11 @@
 
 export default function AgingSystem(world, person) {
-	this.hasComponent(person);
+	hasComponent(person);
 
 	person.components.Age._age++;
 }
 
-AgingSystem.prototype.hasComponent = function(person) {
+function hasComponent(person) {
 	if (!person.hasComponent('Age')) {
 		throw "Person doesnt have Age component";
 	}

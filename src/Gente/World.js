@@ -1,4 +1,6 @@
 
+
+
 import PersonGenerator from './generators/PersonGenerator';
 
 import AgingSystem from './systems/AgingSystem';
@@ -33,17 +35,21 @@ export default class World {
 			let person = this.populace[i];
 
 			// Run Systems
-			new AgingSystem(this, person);
+			// new AgingSystem(this, person);
+			AgingSystem(this, person);
 
 			// Marriage Events
-			new MarriageSystem(this, person);
+			// new MarriageSystem(this, person);
+			MarriageSystem(this, person);
 
 			// Birth Events
-			new BirthSystem(this, person);
+			// new BirthSystem(this, person);
+			BirthSystem(this, person);
 
 			// Check for deaths, always has to be last
-			new DeathSystem(this, person);
+			DeathSystem(this, person);
 		}
+
 
 		this.analyzeYear();
 	}
@@ -81,7 +87,8 @@ export default class World {
 			return 0;
 		}
 		const totalAge = this.deadPopulace.reduce((age, person) => {
-			return age+=person.components.Age.getAgeInYears();
+			age += person.components.Age.getAgeInYears();
+			return age;
 		}, 0);
 
 		return Math.floor(totalAge / this.stats.deadCount);

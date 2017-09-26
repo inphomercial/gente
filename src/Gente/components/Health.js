@@ -1,4 +1,3 @@
-
 export default function Health(options) {
 
 	this._isAlive = options.isAlive;

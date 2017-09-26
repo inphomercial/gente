@@ -7,24 +7,24 @@ import {killPerson} from './DeathSystem';
 
 export default function BirthSystem(world, person) {
 
-	if (!this.isAbleToGetPregnant(world, person)) {
+	if (!isAbleToGetPregnant(world, person)) {
 		return;
 	}
 		
 	const momName = person.components.Name.getFullName();
 	const husband = world.findPersonById(person.components.Marriage.getSpouseId());
 
-	if (this.isPregnantButNotFullTerm(person)) {
+	if (isPregnantButNotFullTerm(person)) {
 		person.components.Health.setIsFullTerm(true);
 		window.logger.add(`${momName} has become full term`, person);
 		return;
 	}
 
-	if (this.isAlreadyPregnantAndFullTerm(person)) {
+	if (isAlreadyPregnantAndFullTerm(person)) {
 		window.logger.add(`${momName} is giving birth.`, person);
 
 		// Attempt to have baby
-		if (this.doesMotherDieDuringBirth(world)) {
+		if (doesMotherDieDuringBirth(world)) {
 			killPerson(world, person, 'complications in child birth');
 			return;
 		}
@@ -59,23 +59,28 @@ export default function BirthSystem(world, person) {
 	}
 }
 
-BirthSystem.prototype.isPregnantButNotFullTerm = function(person) {
+// BirthSystem.prototype.isPregnantButNotFullTerm = function(person) {
+function isPregnantButNotFullTerm(person) {
 	return person.components.Health.getIsPregnant() && !person.components.Health.getIsFullTerm();
-};
+}
 
-BirthSystem.prototype.isAlreadyPregnantAndFullTerm = function(person) {
+// BirthSystem.prototype.isAlreadyPregnantAndFullTerm = function(person) {
+function isAlreadyPregnantAndFullTerm(person) {
 	return person.components.Health.getIsPregnant() && person.components.Health.getIsFullTerm();
-};
+}
 
-BirthSystem.prototype.doesMotherDieDuringBirth = function(world) {
+// BirthSystem.prototype.doesMotherDieDuringBirth = function(world) {
+function doesMotherDieDuringBirth(world) {
 	return d100Precise() <= world.settings.birthParentMortalityRate;
-};
+}
 
-BirthSystem.prototype.isAbleToGetPregnant = function(world, person) {
+// BirthSystem.prototype.isAbleToGetPregnant = function(world, person) {
+function isAbleToGetPregnant(world, person) {
 	let minAge = world.settings.minPregnantAge;
 
 	return person.components.Marriage.getIsMarried() &&
 	person.components.Sex.isFemale() &&
 	person.components.Age.getAgeInYears() >= minAge;
-};
+}
+
 

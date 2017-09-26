@@ -17,7 +17,6 @@ Entity.prototype.hasComponent = function(name) {
 }
 
 Entity.prototype.addComponent = function addComponent(component) {
-	// Add component data to the entity
 	this.components[component.name] = component;
 	return this;
 };

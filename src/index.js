@@ -7,6 +7,7 @@ import {Logger} from './Gente/logger';
 
 window.logger = new Logger();
 
+
 ReactDOM.render(<App />, document.getElementById('root'));
 
 // To do still
