@@ -11,12 +11,12 @@ const COLORS = [
 
 export default function EyeColorGenerator(personTemplate) {
 
-	personTemplate.eyeColor = this.generateEyeColor();
+	personTemplate.eyeColor = generateEyeColor();
 
 	return personTemplate;
 }
 
-EyeColorGenerator.prototype.generateEyeColor = function() {
+function generateEyeColor() {
     let num = dRoll(0, COLORS.length);
 
 	return COLORS[num];
