@@ -23,17 +23,14 @@ class App extends Component {
 		}
 	}
 
-	incrementYear() {
-		let world = this.state.world;
-		world.takeTurn();
-		this.setState({world: world});
-	}
+	incrementByYears(amount) {
+		if (!amount) throw "No amount to increment by";
 
-	increment10Years() {
 		let world = this.state.world;
-		for (var i = 0; i < 10; i++) {
+		for (var i = 1; i <= amount; i++) {
 			world.takeTurn();
 		}
+
 		this.setState({world: world});
 	}
 
@@ -50,10 +47,10 @@ class App extends Component {
 				<div className="columns">
 					<div className="column is-4"></div>
 					<div className="column is-2">
-						<a className="button" onClick={() => this.incrementYear()}>1 Year</a>
+						<a className="button" onClick={() => this.incrementByYears(1)}>1 Year</a>
 					</div>
 					<div className="column">
-						<a className="button" onClick={() => this.increment10Years()}>10 Years</a>
+						<a className="button" onClick={() => this.incrementByYears(10)}>10 Years</a>
 					</div>
 				</div>
 
