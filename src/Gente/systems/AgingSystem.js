@@ -6,7 +6,11 @@ export default function AgingSystem(world, person) {
 }
 
 function hasComponent(person) {
-	if (!person.hasComponent('Age')) {
-		throw "Person doesnt have Age component";
+	try {
+		if (!person.hasComponent('Age')) {
+			throw "Person doesnt have Age component";
+		}
+	} catch(e) {
+		debugger;
 	}
 }

@@ -28,28 +28,32 @@ export default class World {
 	}
 
 	takeTurn() {
-		this.incrementYear();
 
-		let populaceLength = this.populace.length;
-		for (var i = 0; i < populaceLength; i++) {
+		try {
+			this.incrementYear();
 
-			let person = this.populace[i];
+			for (var i = 0; i < this.populace.length; i++) {
 
-			// Run Systems
-			AgingSystem(this, person);
+				let person = this.populace[i];
 
-			// Marriage Events
-			MarriageSystem(this, person);
+				// Run Systems
+				AgingSystem(this, person);
 
-			// Birth Events
-			BirthSystem(this, person);
+				// Marriage Events
+				MarriageSystem(this, person);
 
-			// Check for deaths, always has to be last
-			DeathSystem(this, person);
+				// Birth Events
+				BirthSystem(this, person);
+
+				// Check for deaths, always has to be last
+				DeathSystem(this, person);
+			}
+
+			this.analyzeYear();
+
+		} catch (e) {
+			debugger;
 		}
-
-
-		this.analyzeYear();
 	}
 
 	analyzeYear() {

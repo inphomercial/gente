@@ -1,7 +1,7 @@
 
 import PersonGenerator from '../generators/PersonGenerator';
 
-import {d100Precise} from '../functions';
+import {d100, d100Precise} from '../functions';
 
 import {killPerson} from './DeathSystem';
 
@@ -54,8 +54,10 @@ export default function BirthSystem(world, person) {
 	
 	// Check if can gets pregnant
 	if (!person.components.Health.getIsPregnant() && husband.components.Health.getIsAlive()) {
-		person.components.Health.setIsPregnant(true);
-		window.logger.add(`${momName} has become pregnant`, person);
+		if (d100() > 75) {
+			person.components.Health.setIsPregnant(true);
+			window.logger.add(`${momName} has become pregnant`, person);
+		}
 	}
 }
 

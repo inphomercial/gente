@@ -1,13 +1,6 @@
 
 import {dRoll} from '../functions';
-
-const COLORS = [
-	"black",
-	"blue",
-	"green",
-	"brown",
-	"gray"
-];
+import {EYE_COLORS} from '../data/eyes';
 
 export default function EyeColorGenerator(personTemplate) {
 
@@ -17,7 +10,7 @@ export default function EyeColorGenerator(personTemplate) {
 }
 
 function generateEyeColor() {
-    let num = dRoll(0, COLORS.length);
+    let num = dRoll(0, EYE_COLORS.length);
 
-	return COLORS[num];
+	return EYE_COLORS[num];
 }

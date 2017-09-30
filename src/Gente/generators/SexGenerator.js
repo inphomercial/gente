@@ -1,5 +1,6 @@
 
 import {dRoll} from '../functions';
+import {SEXES} from '../data/sexes';
 
 export default function SexGenerator(personTemplate) {
 
@@ -9,12 +10,7 @@ export default function SexGenerator(personTemplate) {
 }
 
 function generateSex() {
-	let sexes = [
-		'Male',
-		'Female'
-	];
+	let num = dRoll(0, SEXES.length);
 
-	let num = dRoll(0, sexes.length);
-
-	return sexes[num];
+	return SEXES[num];
 }
