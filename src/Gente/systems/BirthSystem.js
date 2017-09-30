@@ -59,22 +59,18 @@ export default function BirthSystem(world, person) {
 	}
 }
 
-// BirthSystem.prototype.isPregnantButNotFullTerm = function(person) {
 function isPregnantButNotFullTerm(person) {
 	return person.components.Health.getIsPregnant() && !person.components.Health.getIsFullTerm();
 }
 
-// BirthSystem.prototype.isAlreadyPregnantAndFullTerm = function(person) {
 function isAlreadyPregnantAndFullTerm(person) {
 	return person.components.Health.getIsPregnant() && person.components.Health.getIsFullTerm();
 }
 
-// BirthSystem.prototype.doesMotherDieDuringBirth = function(world) {
 function doesMotherDieDuringBirth(world) {
 	return d100Precise() <= world.settings.birthParentMortalityRate;
 }
 
-// BirthSystem.prototype.isAbleToGetPregnant = function(world, person) {
 function isAbleToGetPregnant(world, person) {
 	let minAge = world.settings.minPregnantAge;
 

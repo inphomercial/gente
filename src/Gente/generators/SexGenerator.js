@@ -3,12 +3,12 @@ import {dRoll} from '../functions';
 
 export default function SexGenerator(personTemplate) {
 
-	personTemplate.sex = this.generateSex();
+	personTemplate.sex = generateSex();
 
 	return personTemplate;
 }
 
-SexGenerator.prototype.generateSex = function() {
+function generateSex() {
 	let sexes = [
 		'Male',
 		'Female'

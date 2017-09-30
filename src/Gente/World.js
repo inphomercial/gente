@@ -30,20 +30,18 @@ export default class World {
 	takeTurn() {
 		this.incrementYear();
 
-		for (var i = 0; i < this.populace.length; i++) {
+		let populaceLength = this.populace.length;
+		for (var i = 0; i < populaceLength; i++) {
 
 			let person = this.populace[i];
 
 			// Run Systems
-			// new AgingSystem(this, person);
 			AgingSystem(this, person);
 
 			// Marriage Events
-			// new MarriageSystem(this, person);
 			MarriageSystem(this, person);
 
 			// Birth Events
-			// new BirthSystem(this, person);
 			BirthSystem(this, person);
 
 			// Check for deaths, always has to be last
@@ -111,12 +109,15 @@ export default class World {
 	}
 
 	findPersonById(personId) {
-		for (var i = 0; i < this.populace.length; i++) {
+		let populaceLength = this.populace.length;
+		for (var i = 0; i < populaceLength; i++) {
 			if (personId === this.populace[i].id) {
 				return this.populace[i];
 			}
 		}
-		for (var j = 0; j < this.deadPopulace.length; i++) {
+
+		let deadLength = this.deadPopulace.length;
+		for (var j = 0; j < deadLength; i++) {
 			if (personId === this.deadPopulace[j].id) {
 				return this.deadPopulace[j];
 			}

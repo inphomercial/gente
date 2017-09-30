@@ -5,31 +5,31 @@ import {dRoll} from '../functions';
 export default function NameGenerator(personTemplate) {
 
 	if (personTemplate.sex === "Female") {
-		personTemplate.firstName = this.firstNameFemaleGenerator();
+		personTemplate.firstName = firstNameFemaleGenerator();
 	}
 
 	if (personTemplate.sex === "Male") {
-		personTemplate.firstName = this.firstNameMaleGenerator();
+		personTemplate.firstName = firstNameMaleGenerator();
 	}
 		
-	personTemplate.lastName = this.lastNameGenerator();
+	personTemplate.lastName = lastNameGenerator();
 
 	return personTemplate;
 }
 
-NameGenerator.prototype.firstNameMaleGenerator = function() {
+function firstNameMaleGenerator() {
 	let num = dRoll(0, FIRST_NAME_MALE.length);
 
 	return FIRST_NAME_MALE[num];
 }
 
-NameGenerator.prototype.firstNameFemaleGenerator = function() {
+function firstNameFemaleGenerator() {
 	let num = dRoll(0, FIRST_NAME_FEMALE.length);
 
 	return FIRST_NAME_FEMALE[num];
 }
 
-NameGenerator.prototype.lastNameGenerator = function() {
+function lastNameGenerator() {
 	let num = dRoll(0, LAST_NAME.length);
 
 	return LAST_NAME[num];

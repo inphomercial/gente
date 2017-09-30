@@ -25,7 +25,8 @@ export default function MarriageSystem(world, person) {
 	let startingIndex = dRoll(0, indexModifier);
 
 	// Loop through and see if anyone marrys, stop when reach the end of populace or number of suitors
-	for (var i = 0; i < world.populace.length && i <= suitors; i++) {
+	let populaceLength = world.populace.length;
+	for (var i = 0; i < populaceLength && i <= suitors; i++) {
 		let possibleSpouse = world.populace[startingIndex + i];
 		if (!possibleSpouse) {
 			console.log(startingIndex + i);
