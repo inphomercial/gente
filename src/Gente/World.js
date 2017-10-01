@@ -3,6 +3,7 @@
 
 import PersonGenerator from './generators/PersonGenerator';
 
+import AfflictionSystem from './systems/AfflictionSystem';
 import AgingSystem from './systems/AgingSystem';
 import MarriageSystem from './systems/MarriageSystem';
 import BirthSystem from './systems/BirthSystem';
@@ -35,17 +36,11 @@ export default class World {
 			for (var i = 0; i < this.populace.length; i++) {
 
 				let person = this.populace[i];
-
-				// Run Systems
+				
+				AfflictionSystem(this, person);
 				AgingSystem(this, person);
-
-				// Marriage Events
 				MarriageSystem(this, person);
-
-				// Birth Events
 				BirthSystem(this, person);
-
-				// Check for deaths, always has to be last
 				DeathSystem(this, person);
 			}
 

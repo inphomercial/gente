@@ -1,4 +1,3 @@
-
 import {d100, dRoll} from '../functions';
 
 export default function MarriageSystem(world, person) {

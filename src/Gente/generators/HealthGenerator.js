@@ -6,5 +6,7 @@ export default function HealthGenerator(personTemplate) {
 	personTemplate.isPregnant = false;
 	personTemplate.isFullTerm = false;
 
+	personTemplate.afflications = [];
+
 	return personTemplate;
 }
