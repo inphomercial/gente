@@ -8,8 +8,7 @@ export default function AfflictionSystem(world, person) {
 	hasComponent(person);
 
 	// Temp for testing
-	let roll = d100();
-	if (roll < 10) {
+	if (d100() < 10) {
 		person.components.Health.addAffliction(new CommonCold());
 	}
 
