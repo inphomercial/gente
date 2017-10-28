@@ -8,6 +8,8 @@ import MarriageSystem from './systems/MarriageSystem';
 import BirthSystem from './systems/BirthSystem';
 import DeathSystem from './systems/DeathSystem';
 
+import afflictionRepository from './data/afflictions';
+
 export default class World {
 
 	constructor(settings) {
@@ -25,6 +27,8 @@ export default class World {
 
 		this.deadPopulace = [];
 		this.populace = [];
+
+		this.repositories = {"affliction": afflictionRepository.init()}
 	}
 
 	takeTurn() {
