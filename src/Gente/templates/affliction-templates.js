@@ -1,6 +1,6 @@
 
 const TRANSFER_METHODS = {
-	SILIVA: "siliva",
+	SALIVA: "saliva",
 	BLOOD: "blood",
 	AIR: "air",
 	TOUCH: "touch",
@@ -20,7 +20,7 @@ AFFLICTION_TEMPLATES.COMMON_COLD = {
 	name: "Common Cold",
 	isContagious: true,
 	transferMethods: [
-		TRANSFER_METHODS.SILIVA,
+		TRANSFER_METHODS.SALIVA,
 		TRANSFER_METHODS.TOUCH
 	]
 };
@@ -29,7 +29,7 @@ AFFLICTION_TEMPLATES.FLU = {
 	name: "Flu",
 	isContagious: true,
 	transferMethods: [
-		TRANSFER_METHODS.SILIVA,
+		TRANSFER_METHODS.SALIVA,
 		TRANSFER_METHODS.TOUCH
 	]
 }
