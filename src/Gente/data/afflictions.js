@@ -7,8 +7,8 @@ let affictionRepository = {
 	init: function() {
 		let AfflicationRepository = new Repository("Afflications Repository", Affliction);
 
-		AfflicationRepository.define("common-cold", templates.COMMON_COLD); 
-		AfflicationRepository.define("flu", templates.FLU);
+		AfflicationRepository.define(templates.COMMON_COLD); 
+		AfflicationRepository.define(templates.FLU);
 
 		return AfflicationRepository;
 	}

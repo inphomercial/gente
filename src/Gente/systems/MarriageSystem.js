@@ -28,11 +28,8 @@ export default function MarriageSystem(world, person) {
 	let populaceLength = world.populace.length;
 	for (var i = 0; i < populaceLength && i <= suitors; i++) {
 		let possibleSpouse = world.populace[startingIndex + i];
-		if (!possibleSpouse) {
-			console.log(startingIndex + i);
-		}
 		let eligible = possibleSpouse.components.Age.getAgeInYears() > world.settings.minMarryAge &&
-			!possibleSpouse.components.Marriage.getIsMarried() &&
+			possibleSpouse.components.Marriage.isNotMarried() &&
 			!person.id !== possibleSpouse.id &&
 			person.components.Sex.getSex() !== possibleSpouse.components.Sex.getSex();
 

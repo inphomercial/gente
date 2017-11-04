@@ -17,6 +17,7 @@ const STAGES = {
 const AFFLICTION_TEMPLATES = {};
 
 AFFLICTION_TEMPLATES.COMMON_COLD = {
+	key: "common-cold",
 	name: "Common Cold",
 	isContagious: true,
 	transferMethods: [
@@ -26,6 +27,7 @@ AFFLICTION_TEMPLATES.COMMON_COLD = {
 };
 
 AFFLICTION_TEMPLATES.FLU = {
+	key: "flu",
 	name: "Flu",
 	isContagious: true,
 	transferMethods: [

@@ -10,6 +10,8 @@ export const personDefault = {
 	isPregnant: false,
 	isFullTerm: false,
 
+	afflictions: [],
+
 	// Possible die roll for each person based on a range (ex: d4, d6, d20 -- combined fertility rates need to exceed global setting?)
 	fertility: 0,
 

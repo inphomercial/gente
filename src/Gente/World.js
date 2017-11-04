@@ -7,6 +7,7 @@ import AgingSystem from './systems/AgingSystem';
 import MarriageSystem from './systems/MarriageSystem';
 import BirthSystem from './systems/BirthSystem';
 import DeathSystem from './systems/DeathSystem';
+import AfflictionSystem from './systems/AfflictionSystem';
 
 import afflictionRepository from './data/afflictions';
 
@@ -40,13 +41,12 @@ export default class World {
 
 				let person = this.populace[i];
 
-				// Run Systems
+				AfflictionSystem(this, person);
+
 				AgingSystem(this, person);
 
-				// Marriage Events
 				MarriageSystem(this, person);
 
-				// Birth Events
 				BirthSystem(this, person);
 
 				// Check for deaths, always has to be last
