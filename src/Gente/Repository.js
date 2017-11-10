@@ -1,5 +1,5 @@
 
-export class Repository {
+export default class Repository {
 	constructor(name, baseClass) {
 		// Name of the Repository
 		this._name = name;

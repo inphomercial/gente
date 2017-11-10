@@ -1,5 +1,5 @@
 
-export const personDefault = {
+export const personDefault = () => ({
 	age: null,
 	sex: null,
 	dateOfBirth: null,
@@ -29,4 +29,4 @@ export const personDefault = {
 	spouseId: null,
 
 	children: []
-}
+})

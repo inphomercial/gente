@@ -9,7 +9,7 @@ import BirthSystem from './systems/BirthSystem';
 import DeathSystem from './systems/DeathSystem';
 import AfflictionSystem from './systems/AfflictionSystem';
 
-import afflictionRepository from './data/afflictions';
+import afflictionRepository from './repositories/afflictions';
 
 export default class World {
 
@@ -38,6 +38,9 @@ export default class World {
 			this.incrementYear();
 
 			for (var i = 0; i < this.populace.length; i++) {
+				if (this.populace[i] === null) {
+					continue;
+				}
 
 				let person = this.populace[i];
 
@@ -54,6 +57,13 @@ export default class World {
 			}
 
 			this.analyzeYear();
+
+			// Subject to change once populace is a hash table
+			let newPopulace = this.populace.filter(function(person) {
+				return person !== null;
+			});
+
+			this.populace = newPopulace;
 
 		} catch (e) {
 			debugger;
@@ -105,6 +115,8 @@ export default class World {
 	}
 
 	removePerson(person) {
+		// this.populace[this.populace.indexOf(person)] = null;
+		// This needs to be fixed!
 		this.populace.splice(this.populace.indexOf(person), 1);
 	}
 

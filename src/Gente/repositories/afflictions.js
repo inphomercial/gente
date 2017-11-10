@@ -1,9 +1,9 @@
 
 import Affliction from '../components/Affliction';
-import {Repository} from '../Repository'
+import Repository from '../Repository'
 import templates from '../templates/affliction-templates';
 
-let affictionRepository = {
+let afflictionRepository = {
 	init: function() {
 		let AfflicationRepository = new Repository("Afflications Repository", Affliction);
 
@@ -14,4 +14,4 @@ let affictionRepository = {
 	}
 }
 
-export default affictionRepository;
+export default afflictionRepository;
