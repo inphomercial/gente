@@ -10,6 +10,10 @@ MarriageComponent.prototype.getIsMarried = function() {
 	return this._isMarried;
 }
 
+MarriageComponent.prototype.isNotMarried = function() {
+	return this._isMarried === false;
+}
+
 MarriageComponent.prototype.getSpouseId = function() {
 	return this._spouseId;
 }

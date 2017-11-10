@@ -30,6 +30,9 @@ export class Person extends Entity {
 		// Parents
 		this.parents = {}; 
 
+		// Afflictions
+		this.afflictions = options.afflictions;
+
 		// Children
 		this.addComponent(new ChildrenComponent(options));
 

@@ -7,8 +7,9 @@ import AgingSystem from './systems/AgingSystem';
 import MarriageSystem from './systems/MarriageSystem';
 import BirthSystem from './systems/BirthSystem';
 import DeathSystem from './systems/DeathSystem';
+import AfflictionSystem from './systems/AfflictionSystem';
 
-import afflictionRepository from './data/afflictions';
+import afflictionRepository from './repositories/afflictions';
 
 export default class World {
 
@@ -37,16 +38,18 @@ export default class World {
 			this.incrementYear();
 
 			for (var i = 0; i < this.populace.length; i++) {
+				if (this.populace[i] === null) {
+					continue;
+				}
 
 				let person = this.populace[i];
 
-				// Run Systems
+				AfflictionSystem(this, person);
+
 				AgingSystem(this, person);
 
-				// Marriage Events
 				MarriageSystem(this, person);
 
-				// Birth Events
 				BirthSystem(this, person);
 
 				// Check for deaths, always has to be last
@@ -54,6 +57,13 @@ export default class World {
 			}
 
 			this.analyzeYear();
+
+			// Subject to change once populace is a hash table
+			let newPopulace = this.populace.filter(function(person) {
+				return person !== null;
+			});
+
+			this.populace = newPopulace;
 
 		} catch (e) {
 			debugger;
@@ -105,6 +115,8 @@ export default class World {
 	}
 
 	removePerson(person) {
+		// this.populace[this.populace.indexOf(person)] = null;
+		// This needs to be fixed!
 		this.populace.splice(this.populace.indexOf(person), 1);
 	}
 

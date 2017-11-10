@@ -4,6 +4,7 @@ export default function Health(options) {
 	this._isSick = options.isSick;
 	this._isPregnant = options.isPregnant;
 	this._isFullTerm = options.isFullTerm;
+	this._afflictions = options.afflictions;
 }
 Health.prototype.name = "Health";
 
@@ -37,4 +38,12 @@ Health.prototype.getIsFullTerm = function() {
 
 Health.prototype.setIsFullTerm = function(isFullTerm) {
 	this._isFullTerm = isFullTerm;
+}
+
+Health.prototype.getAfflictions = function() {
+	return this._afflictions;
+}
+
+Health.prototype.addAffliction = function(affliction) {
+	this._afflictions.push(affliction);
 }
