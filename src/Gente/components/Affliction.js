@@ -23,7 +23,7 @@ Affliction.prototype.setStage = function(stage) {
 }
 
 Affliction.prototype.act = function() {
-	console.log(this._name + " is acting");
+	console.log("%s is acting", this._name);
 
 	if (this.getStage() === STAGES.ONSET) {
 		this._onsetFunction();

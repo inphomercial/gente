@@ -19,25 +19,15 @@ export class Person extends Entity {
 		this.addComponent(new Age(options));
 		this.addComponent(new Sex(options));
 		this.addComponent(new Name(options));
-
 		this.addComponent(new Health(options));
 		this.addComponent(new Marriage(options));
-		
 		this.addComponent(new Eye(options));
-
-		// Possible die roll for each person based on a range (ex: d4, d6, d20 -- combined fertility rates need to exceed global setting?)
-		// this.fertility = options.fertility;
 		this.addComponent(new Fertility(options));
-
-
-		// Parents
-		this.parents = {}; 
-
-		// Afflictions
-		this.afflictions = options.afflictions;
-
-		// Children
 		this.addComponent(new ChildrenComponent(options));
+
+		// To be converted to components
+		this.parents = {}; 
+		this.afflictions = options.afflictions;
 
 		this.log = {};
 	}

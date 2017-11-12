@@ -25,16 +25,16 @@ AFFLICTION_TEMPLATES.COMMON_COLD = {
 		TRANSFER_METHODS.TOUCH
 	],
 	onsetFunction: function() {
-		console.log("common cold onset !");
+		console.log("%s has onset", this._name);
 	},
 	actFunction: function() {
-		console.log("im the common cold acting up!!");
+		console.log("%s is acting up", this._name);
 	},
 	recoveryFunction: function() {
-		console.log("im the common cold recovering");
+		console.log("%s is recovering", this._name);
 	},
 	completeFunction: function() {
-		console.log("im the common cold complete");
+		console.log("%s is complete", this._name);
 	}
 };
 
@@ -47,16 +47,16 @@ AFFLICTION_TEMPLATES.FLU = {
 		TRANSFER_METHODS.TOUCH
 	],
 	onsetFunction: function() {
-		console.log("flu onset !");
+		console.log("%s has onset", this._name);
 	},
 	actFunction: function() {
-		console.log("im the FLUUU acting up!!");
+		console.log("%s is acting up", this._name);
 	},
 	recoveryFunction: function() {
-		console.log("im the flu recovering");
+		console.log("%s is recovering", this._name);
 	},
 	completeFunction: function() {
-		console.log("im the flu complete");
+		console.log("%s is complete", this._name);
 	}
 }
 

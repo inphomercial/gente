@@ -28,10 +28,7 @@ export default function MarriageSystem(world, person) {
 	let populaceLength = world.populace.length;
 	for (var i = 0; i < populaceLength && i <= suitors; i++) {
 		let possibleSpouse = world.populace[startingIndex + i];
-		let eligible = possibleSpouse.components.Age.getAgeInYears() > world.settings.minMarryAge &&
-			possibleSpouse.components.Marriage.isNotMarried() &&
-			!person.id !== possibleSpouse.id &&
-			person.components.Sex.getSex() !== possibleSpouse.components.Sex.getSex();
+		let eligible = isCoupleEligible(possibleSpouse, person, world);
 
 		// TODO: Come up with a better means of telling if they marry
 		if (eligible && d100() > 95) {
@@ -46,6 +43,15 @@ export default function MarriageSystem(world, person) {
 			break;
 		}
 	}
+}
+
+function isCoupleEligible(person1, person2, world) {
+	return person1.components.Age.getAgeInYears() > world.settings.minMarryAge
+		&& person1.components.Marriage.isNotMarried()
+		&& !person2.id !== person1.id
+		&& person2.components.Sex.getSex() !== person1.components.Sex.getSex()
+		&& person2.components.Age.getAgeInYears() > world.settings.minMarryAge
+		&& person2.components.Marriage.isNotMarried();
 }
 
 function setFemaleToMaleLastName(person1, person2) {
