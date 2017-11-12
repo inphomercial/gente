@@ -62,11 +62,11 @@ export default class World {
 			this.analyzeYear();
 
 			// Subject to change once populace is a hash table
-			let newPopulace = this.populace.filter(function(person) {
-				return person !== null;
-			});
+			// let newPopulace = this.populace.filter(function(person) {
+			// 	return person !== null;
+			// });
 
-			this.populace = newPopulace;
+			// this.populace = newPopulace;
 
 		} catch (e) {
 			debugger;
@@ -120,7 +120,13 @@ export default class World {
 	removePerson(person) {
 		// this.populace[this.populace.indexOf(person)] = null;
 		// This needs to be fixed!
-		this.populace.splice(this.populace.indexOf(person), 1);
+		// this.populace.splice(this.populace.indexOf(person), 1);
+
+		for (var i = this.populace.length-1; i >= 0; i--) {
+			if (this.populace[i].id == person.id) {
+				this.populace.splice(i, 1);
+			}
+		}
 	}
 
 	addDeadPerson(person) {
