@@ -35,6 +35,8 @@ class PersonComponent extends Component {
 						<br />
 						Children { person.components.Children.getChildren().length }
 						<br />
+						Fertility { person.components.Fertility._fertility }
+						<br />
 						Relatives	William Mapother (paternal first cousin)
 						<br />
 						<a>Parents</a> <a>Children</a>

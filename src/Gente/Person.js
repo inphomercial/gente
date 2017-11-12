@@ -6,6 +6,7 @@ import Marriage from './components/Marriage';
 import Name from './components/Name';
 import ChildrenComponent from './components/Children';
 import Eye from './components/Eye';
+import Fertility from './components/Fertility';
 
 import Entity from './Entity';
 
@@ -25,7 +26,9 @@ export class Person extends Entity {
 		this.addComponent(new Eye(options));
 
 		// Possible die roll for each person based on a range (ex: d4, d6, d20 -- combined fertility rates need to exceed global setting?)
-		this.fertility = options.fertility;
+		// this.fertility = options.fertility;
+		this.addComponent(new Fertility(options));
+
 
 		// Parents
 		this.parents = {}; 

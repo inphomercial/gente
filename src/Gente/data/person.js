@@ -1,7 +1,14 @@
 
 export const personDefault = () => ({
+	
+	// Age Component
 	age: null,
+
+	// Sex Component
 	sex: null,
+
+
+
 	dateOfBirth: null,
 	dateOfDeath: null,
 
@@ -13,7 +20,8 @@ export const personDefault = () => ({
 	afflictions: [],
 
 	// Possible die roll for each person based on a range (ex: d4, d6, d20 -- combined fertility rates need to exceed global setting?)
-	fertility: 0,
+	// Fertility Component
+	fertility: null,
 
 	parents: {
 		fatherId: null,

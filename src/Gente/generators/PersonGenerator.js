@@ -9,6 +9,7 @@ import NameGenerator from './NameGenerator';
 import HealthGenerator from './HealthGenerator';
 import MarriageGenerator from './MarriageGenerator';
 import EyeColorGenerator from './EyeColorGenerator';
+import FertilityGenerator from './FertilityGenerator';
 
 export default function PersonGenerator(defaults = {}, world) {
 
@@ -19,6 +20,7 @@ export default function PersonGenerator(defaults = {}, world) {
 	template = Object.assign({}, HealthGenerator(template), defaults);
 	template = Object.assign({}, MarriageGenerator(template), defaults);
 	template = Object.assign({}, EyeColorGenerator(template), defaults);
+	template = Object.assign({}, FertilityGenerator(template), defaults);
 
 	return new Person(template);
 }

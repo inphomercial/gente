@@ -32,7 +32,8 @@ export default function BirthSystem(world, person) {
 		let lastName = husband.components.Name.getLastName();
 		let babyTemplate = {
 			age: 0,
-			lastName 
+			lastName,
+			fertility: 0
 		};
 	
 		let baby = new PersonGenerator(babyTemplate, world);
@@ -53,12 +54,22 @@ export default function BirthSystem(world, person) {
 	}
 	
 	// Check if can gets pregnant
-	if (!person.components.Health.getIsPregnant() && husband.components.Health.getIsAlive()) {
-		if (d100() > 75) {
-			person.components.Health.setIsPregnant(true);
-			window.logger.add(`${momName} has become pregnant`, person);
-		}
+	isNotPregnantAndBothFertile(person, husband);
+}
+
+function isNotPregnantAndBothFertile(woman, male) {
+	if(!woman.components.Health.getIsPregnant()
+		&& male.components.Health.getIsAlive()
+		&& (male.components.Fertility._fertility + woman.components.Fertility._fertility) > 75) {
+			makePregnant(woman);
 	}
+}
+
+function makePregnant(woman) {
+	const momName = woman.components.Name.getFullName();
+	woman.components.Health.setIsPregnant(true);
+	
+	window.logger.add(`${momName} has become pregnant`, woman);
 }
 
 function isPregnantButNotFullTerm(person) {

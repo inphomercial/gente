@@ -8,6 +8,7 @@ import MarriageSystem from './systems/MarriageSystem';
 import BirthSystem from './systems/BirthSystem';
 import DeathSystem from './systems/DeathSystem';
 import AfflictionSystem from './systems/AfflictionSystem';
+import FertilitySystem from './systems/FertilitySystem';
 
 import afflictionRepository from './repositories/afflictions';
 
@@ -47,6 +48,8 @@ export default class World {
 				AfflictionSystem(this, person);
 
 				AgingSystem(this, person);
+
+				FertilitySystem(this, person);
 
 				MarriageSystem(this, person);
 
