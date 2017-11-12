@@ -2,14 +2,14 @@
 export default function FertilitySystem(world, person) {
 	hasComponent(person);
 
-	if (person.components.Age._age > 11 && person.components.Age._age < 45) {
-		console.log("person %s fertility increased", person);
-		person.components.Fertility._fertility++;
+	if (person.components.Age.getAgeInYears() > 11 && person.components.Age.getAgeInYears() < 45) {
+		console.log("%o fertility increased", person);
+		person.components.Fertility.increaseBy(1);
 	}
 	
-	if (person.components.Age._age >= 45) {
-		console.log("person %s fertility decreased", person);
-		person.components.Fertility._fertility--;
+	if (person.components.Age.getAgeInYears() >= 45) {
+		console.log("%o fertility decreased", person);
+		person.components.Fertility.decreaseBy(1);
 	}
 }
 

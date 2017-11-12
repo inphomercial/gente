@@ -60,7 +60,7 @@ export default function BirthSystem(world, person) {
 function isNotPregnantAndBothFertile(woman, male) {
 	if(!woman.components.Health.getIsPregnant()
 		&& male.components.Health.getIsAlive()
-		&& (male.components.Fertility._fertility + woman.components.Fertility._fertility) > 75) {
+		&& (male.components.Fertility.get() + woman.components.Fertility.get()) > 75) {
 			makePregnant(woman);
 	}
 }
@@ -87,9 +87,9 @@ function doesMotherDieDuringBirth(world) {
 function isAbleToGetPregnant(world, person) {
 	let minAge = world.settings.minPregnantAge;
 
-	return person.components.Marriage.getIsMarried() &&
-	person.components.Sex.isFemale() &&
-	person.components.Age.getAgeInYears() >= minAge;
+	return person.components.Marriage.getIsMarried()
+		&& person.components.Sex.isFemale()
+		&& person.components.Age.getAgeInYears() >= minAge;
 }
 
 
