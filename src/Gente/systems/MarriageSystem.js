@@ -42,7 +42,23 @@ export default function MarriageSystem(world, person) {
 
 			person.components.Marriage.marryTo(possibleSpouse);
 			possibleSpouse.components.Marriage.marryTo(person);
+			setFemaleToMaleLastName(person, possibleSpouse);
 			break;
 		}
+	}
+}
+
+function setFemaleToMaleLastName(person1, person2) {
+
+	if (person1.components.Sex.isFemale()) {
+		person1.components.Name.setLastName(person2.components.Name.getLastName());
+
+		return;
+	}
+	
+	if (person2.components.Sex.isFemale()) {
+		person2.components.Name.setLastName(person1.components.Name.getLastName());
+
+		return;
 	}
 }

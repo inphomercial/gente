@@ -50,6 +50,7 @@ export default function BirthSystem(world, person) {
 		world.addPerson(baby);
 
 		window.logger.add(`${momName} has had a baby.`, baby);
+		window.logger.add(`${baby.components.Name.getFullName()} has been born.`, baby);
 		return;
 	}
 	
