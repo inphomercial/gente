@@ -106,7 +106,7 @@ export default class World {
 			return 0;
 		}
 		const totalAge = this.deadPopulace.reduce((age, person) => {
-			age += person.components.Age.getAgeInYears();
+			age += person.get('Age').getAgeInYears();
 			return age;
 		}, 0);
 
@@ -123,7 +123,7 @@ export default class World {
 		// this.populace.splice(this.populace.indexOf(person), 1);
 
 		for (var i = this.populace.length-1; i >= 0; i--) {
-			if (this.populace[i].id === person.id) {
+			if (this.populace[i].getId() === person.getId()) {
 				this.populace.splice(i, 1);
 			}
 		}
@@ -140,14 +140,14 @@ export default class World {
 	findPersonById(personId) {
 		let populaceLength = this.populace.length;
 		for (var i = 0; i < populaceLength; i++) {
-			if (personId === this.populace[i].id) {
+			if (personId === this.populace[i].getId()) {
 				return this.populace[i];
 			}
 		}
 
 		let deadLength = this.deadPopulace.length;
 		for (var j = 0; j < deadLength; i++) {
-			if (personId === this.deadPopulace[j].id) {
+			if (personId === this.deadPopulace[j].getId()) {
 				return this.deadPopulace[j];
 			}
 		}
@@ -161,12 +161,12 @@ export default class World {
 
 		let person = this.findPersonById(personId);
 
-		let spouseId = person.components.Marriage.getSpouseId();
+		let spouseId = person.get('Marriage').getSpouseId();
 		if (spouseId) {
 			spouse = this.findPersonById(spouseId);
 		}
 
-		let kids = person.components.Children.getChildren();
+		let kids = person.get('Children').getChildren();
 		if (kids.length) {
 			for (var i = 0, len = kids.length; i < len; i++) {
 				children.push(this.findPersonById(kids[i]));
@@ -194,13 +194,13 @@ export default class World {
 
 	getAllPregnant() {
 		return this.populace.filter(function(person) {
-			return person.components.Health.getIsPregnant();
+			return person.get('Health').getIsPregnant();
 		});
 	}
 
 	getAllMarried() {
 		return this.populace.filter(function(person) {
-			return person.components.Marriage.getIsMarried();
+			return person.get('Marriage').getIsMarried();
 		})
 	}
 

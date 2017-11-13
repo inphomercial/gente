@@ -36,7 +36,7 @@ export default function DeathSystem(world, person) {
 }
 
 function rollForSids(world, person) {
-	if (person.components.Age.getAgeInYears() <= 3) {
+	if (person.get('Age').getAgeInYears() <= 3) {
 		let sidsRate = world.settings.infantMortalityRate;
 		return d100Precise() <= sidsRate;
 	}
@@ -86,10 +86,10 @@ function rollForFreakAccident(world) {
 }
 
 export function killPerson(world, person, cause) {
-	window.logger.add(`${person.components.Name.getFullName()} has died of ${cause} at the age of ${person.components.Age.getAgeInYears()}`, person);
-	person.components.Health.setIsAlive(false);
+	window.logger.add(`${person.get('Name').getFullName()} has died of ${cause} at the age of ${person.get('Age').getAgeInYears()}`, person);
+	person.get('Health').setIsAlive(false);
 
-	person.components.Age.setDateOfDeath(world.currentYear);
+	person.get('Age').setDateOfDeath(world.currentYear);
 	world.addDeadPerson(person);
 	world.removePerson(person);
 }

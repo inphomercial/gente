@@ -2,7 +2,7 @@
 export default function AgingSystem(world, person) {
 	hasComponent(person);
 
-	person.components.Age._age++;
+	person.get('Age').incrementAge();
 }
 
 function hasComponent(person) {

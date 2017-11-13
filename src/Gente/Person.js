@@ -31,4 +31,16 @@ export class Person extends Entity {
 
 		this.log = {};
 	}
+
+	get(componentName) {
+		if (!this.components[componentName]) {
+			throw new Error('Cannot get component, doesnt exist');
+		}
+			
+		return this.components[componentName];
+	}
+
+	getId() {
+		return this.id;
+	}
 }
