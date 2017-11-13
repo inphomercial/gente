@@ -27,15 +27,15 @@ class PersonComponent extends Component {
 					</div>
 
 					<div className="content">
-						Born { person.components.Age.getDateOfBirth() } - { person.components.Age.getDateOfDeath() }
+						Born { person.get('Age').getDateOfBirth() } - { person.get('Age').getDateOfDeath() }
 						<br />
-						Age { person.components.Age.getAgeInYears() }
+						Age { person.get('Age').getAgeInYears() }
 						<br />
-						Married { person.components.Marriage.getIsMarried() ? "Y" : "N" }
+						Married { person.get('Marriage').getIsMarried() ? "Y" : "N" }
 						<br />
-						Children { person.components.Children.getChildren().length }
+						Children { person.get('Children').getChildren().length }
 						<br />
-						Fertility { person.components.Fertility.get() }
+						Fertility { person.get('Fertility').get() }
 						<br />
 						Relatives	William Mapother (paternal first cousin)
 						<br />
