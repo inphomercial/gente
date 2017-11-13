@@ -6,8 +6,7 @@ export default function MarriageSystem(world, person) {
 	const suitors = 100;
 
 	if (!person.hasComponent('Marriage')) {
-		console.log("Person doesnt have Marriage component");
-		return;
+		throw new Error("Person doesnt have Marriage component");
 	}
 	
 	// Check how their marriage is doing if married, maybe divorce or cheat.

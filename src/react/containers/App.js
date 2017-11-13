@@ -24,7 +24,7 @@ class App extends Component {
 	}
 
 	incrementByYears(amount) {
-		if (!amount) throw "No amount to increment by";
+		if (!amount) throw new Error("No amount to increment by");
 
 		let world = this.state.world;
 		for (var i = 1; i <= amount; i++) {

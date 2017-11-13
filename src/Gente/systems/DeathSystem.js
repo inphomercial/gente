@@ -97,6 +97,6 @@ DeathSystem.prototype.killPerson = killPerson;
 
 function hasComponent(person) {
 	if (!person.hasComponent('Health')) {
-		throw "Person doesnt have Health component";
+		throw new Error("Person doesnt have Health component");
 	}
 }

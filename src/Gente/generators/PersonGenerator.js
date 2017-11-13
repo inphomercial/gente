@@ -14,7 +14,8 @@ import FertilityGenerator from './FertilityGenerator';
 export default function PersonGenerator(defaults = {}, world) {
 
 	let template = {};
-	template = Object.assign({}, personDefault(), SexGenerator(template), defaults);
+	template = Object.assign({}, personDefault(), defaults);
+	template = Object.assign({}, SexGenerator(template), defaults);
 	template = Object.assign({}, AgeGenerator(template, world), defaults);
 	template = Object.assign({}, NameGenerator(template), defaults);
 	template = Object.assign({}, HealthGenerator(template), defaults);

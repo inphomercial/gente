@@ -16,7 +16,7 @@ export default function FertilitySystem(world, person) {
 function hasComponent(person) {
 	try {
 		if (!person.hasComponent('Fertility')) {
-			throw "Person doesnt have Fertility component";
+			throw new Error("Person doesnt have Fertility component");
 		}
 	} catch(e) {
 		debugger;

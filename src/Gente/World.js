@@ -123,7 +123,7 @@ export default class World {
 		// this.populace.splice(this.populace.indexOf(person), 1);
 
 		for (var i = this.populace.length-1; i >= 0; i--) {
-			if (this.populace[i].id == person.id) {
+			if (this.populace[i].id === person.id) {
 				this.populace.splice(i, 1);
 			}
 		}

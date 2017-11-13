@@ -8,18 +8,18 @@ class PersonComponent extends Component {
 
 		return (
 			<div className="card">
-				<div className="card-image">
+				{/* <div className="card-image">
 					<figure className="image is-4by3">
 						<img src={ imageUrl } alt="Image" />
 					</figure>
-				</div>
+				</div> */}
 				<div className="card-content">
 					<div className="media">
-						<div className="media-left">
+						{/* <div className="media-left">
 							<figure className="image is-48x48">
 								<img src="http://bulma.io/images/placeholders/96x96.png" alt="Image" />
 							</figure>
-						</div>
+						</div> */}
 						<div className="media-content">
 							<p className="title is-4">{ person.components.Name.getFullName() }</p>
 							<p className="subtitle is-6">{ person.id }</p>
@@ -35,7 +35,7 @@ class PersonComponent extends Component {
 						<br />
 						Children { person.components.Children.getChildren().length }
 						<br />
-						Fertility { person.components.Fertility._fertility }
+						Fertility { person.components.Fertility.get() }
 						<br />
 						Relatives	William Mapother (paternal first cousin)
 						<br />

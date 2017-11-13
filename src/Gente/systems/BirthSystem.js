@@ -1,7 +1,7 @@
 
 import PersonGenerator from '../generators/PersonGenerator';
 
-import {d100, d100Precise} from '../functions';
+import {d100Precise} from '../functions';
 
 import {killPerson} from './DeathSystem';
 
