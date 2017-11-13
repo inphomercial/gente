@@ -1,32 +1,42 @@
 
 export const personDefault = () => ({
+	
+	// Age Component
 	age: null,
-	sex: null,
 	dateOfBirth: null,
 	dateOfDeath: null,
+	
+	// Name Component	
+	firstName: "",
+	lastName: "",
 
+	// Sex Component
+	sex: null,
+
+	// Health Component
 	isMarried: false,
 	isSick: false,
 	isPregnant: false,
 	isFullTerm: false,
+	
+	// Eye Component
+	eyeColor: null,
+	
+	// Fertility Component
+	fertility: null,
+	
+	// Marriage Component
+	spouseId: null,
 
+	// Children Component
+	children: [],
+
+
+	// To become components
 	afflictions: [],
-
-	// Possible die roll for each person based on a range (ex: d4, d6, d20 -- combined fertility rates need to exceed global setting?)
-	fertility: 0,
 
 	parents: {
 		fatherId: null,
 		motherId: null
-	},
-
-	firstName: "",
-	lastName: "",
-
-	// Features
-	eyeColor: null,
-
-	spouseId: null,
-
-	children: []
-})
+	}
+});

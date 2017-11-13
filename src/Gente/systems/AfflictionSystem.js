@@ -16,7 +16,7 @@ export default function AfflictionSystem(world, person) {
 function hasComponent(person) {
 	try {
 		if (!person.hasComponent('Health')) {
-			throw "Person doesnt have Health component";
+			throw new Error("Person doesnt have Health component");
 		}
 	} catch(e) {
 		debugger;

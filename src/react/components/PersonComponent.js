@@ -8,18 +8,18 @@ class PersonComponent extends Component {
 
 		return (
 			<div className="card">
-				<div className="card-image">
+				{/* <div className="card-image">
 					<figure className="image is-4by3">
 						<img src={ imageUrl } alt="Image" />
 					</figure>
-				</div>
+				</div> */}
 				<div className="card-content">
 					<div className="media">
-						<div className="media-left">
+						{/* <div className="media-left">
 							<figure className="image is-48x48">
 								<img src="http://bulma.io/images/placeholders/96x96.png" alt="Image" />
 							</figure>
-						</div>
+						</div> */}
 						<div className="media-content">
 							<p className="title is-4">{ person.components.Name.getFullName() }</p>
 							<p className="subtitle is-6">{ person.id }</p>
@@ -27,13 +27,15 @@ class PersonComponent extends Component {
 					</div>
 
 					<div className="content">
-						Born { person.components.Age.getDateOfBirth() } - { person.components.Age.getDateOfDeath() }
+						Born { person.get('Age').getDateOfBirth() } - { person.get('Age').getDateOfDeath() }
 						<br />
-						Age { person.components.Age.getAgeInYears() }
+						Age { person.get('Age').getAgeInYears() }
 						<br />
-						Married { person.components.Marriage.getIsMarried() ? "Y" : "N" }
+						Married { person.get('Marriage').getIsMarried() ? "Y" : "N" }
 						<br />
-						Children { person.components.Children.getChildren().length }
+						Children { person.get('Children').getChildren().length }
+						<br />
+						Fertility { person.get('Fertility').get() }
 						<br />
 						Relatives	William Mapother (paternal first cousin)
 						<br />

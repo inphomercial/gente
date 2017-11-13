@@ -1,7 +1,7 @@
 
 import PersonGenerator from '../generators/PersonGenerator';
 
-import {d100, d100Precise} from '../functions';
+import {d100Precise} from '../functions';
 
 import {killPerson} from './DeathSystem';
 
@@ -11,11 +11,11 @@ export default function BirthSystem(world, person) {
 		return;
 	}
 		
-	const momName = person.components.Name.getFullName();
-	const husband = world.findPersonById(person.components.Marriage.getSpouseId());
+	const momName = person.get('Name').getFullName();
+	const husband = world.findPersonById(person.get('Marriage').getSpouseId());
 
 	if (isPregnantButNotFullTerm(person)) {
-		person.components.Health.setIsFullTerm(true);
+		person.get('Health').setIsFullTerm(true);
 		window.logger.add(`${momName} has become full term`, person);
 		return;
 	}
@@ -29,44 +29,57 @@ export default function BirthSystem(world, person) {
 			return;
 		}
 
-		let lastName = husband.components.Name.getLastName();
+		let lastName = husband.get('Name').getLastName();
 		let babyTemplate = {
 			age: 0,
-			lastName 
+			lastName,
+			fertility: 0
 		};
 	
 		let baby = new PersonGenerator(babyTemplate, world);
 	
-		person.components.Children.addChild(baby.id);
-		husband.components.Children.addChild(baby.id);
+		person.get('Children').addChild(baby.id);
+		husband.get('Children').addChild(baby.id);
 
-		person.components.Health.setIsPregnant(false);
-		person.components.Health.setIsFullTerm(false);
+		person.get('Health').setIsPregnant(false);
+		person.get('Health').setIsFullTerm(false);
 
 		baby.parents.motherId = person.id;
-		baby.parents.fatherId = person.components.Marriage.getSpouseId();
+		baby.parents.fatherId = person.get('Marriage').getSpouseId();
 
 		world.addPerson(baby);
 
 		window.logger.add(`${momName} has had a baby.`, baby);
+		window.logger.add(`${baby.get('Name').getFullName()} has been born.`, baby);
+
 		return;
 	}
 	
 	// Check if can gets pregnant
-	if (!person.components.Health.getIsPregnant() && husband.components.Health.getIsAlive()) {
-		if (d100() > 75) {
-			person.components.Health.setIsPregnant(true);
-			window.logger.add(`${momName} has become pregnant`, person);
-		}
+	isNotPregnantAndBothFertile(person, husband);
+}
+
+function isNotPregnantAndBothFertile(woman, male) {
+	if(!woman.get('Health').getIsPregnant()
+		&& male.get('Health').getIsAlive()
+		&& (male.get('Fertility').get() + woman.get('Fertility').get()) > 75) {
+			makePregnant(woman);
 	}
 }
 
+function makePregnant(woman) {
+	const momName = woman.get('Name').getFullName();
+	woman.get('Health').setIsPregnant(true);
+	
+	window.logger.add(`${momName} has become pregnant`, woman);
+}
+
 function isPregnantButNotFullTerm(person) {
-	return person.components.Health.getIsPregnant() && !person.components.Health.getIsFullTerm();
+	return person.get('Health').getIsPregnant() && !person.get('Health').getIsFullTerm();
 }
 
 function isAlreadyPregnantAndFullTerm(person) {
-	return person.components.Health.getIsPregnant() && person.components.Health.getIsFullTerm();
+	return person.get('Health').getIsPregnant() && person.get('Health').getIsFullTerm();
 }
 
 function doesMotherDieDuringBirth(world) {
@@ -76,9 +89,9 @@ function doesMotherDieDuringBirth(world) {
 function isAbleToGetPregnant(world, person) {
 	let minAge = world.settings.minPregnantAge;
 
-	return person.components.Marriage.getIsMarried() &&
-	person.components.Sex.isFemale() &&
-	person.components.Age.getAgeInYears() >= minAge;
+	return person.get('Marriage').getIsMarried()
+		&& person.get('Sex').isFemale()
+		&& person.get('Age').getAgeInYears() >= minAge;
 }
 
 

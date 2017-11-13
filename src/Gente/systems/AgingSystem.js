@@ -2,13 +2,13 @@
 export default function AgingSystem(world, person) {
 	hasComponent(person);
 
-	person.components.Age._age++;
+	person.get('Age').incrementAge();
 }
 
 function hasComponent(person) {
 	try {
 		if (!person.hasComponent('Age')) {
-			throw "Person doesnt have Age component";
+			throw new Error("Person doesnt have Age component");
 		}
 	} catch(e) {
 		debugger;
